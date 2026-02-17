@@ -63,14 +63,14 @@ class PiotrasEnergyDonut extends HTMLElement {
 
   static getStubConfig() {
     return {
-      entity: 'sensor.licznik_dzienny',
+      entity: 'sensor.total_power',
       limit: 9,
       detail_timeout: 15,
-      title: 'STRUKTURA ZUŻYCIA ENERGII',
-      center_label: 'kWh DZIŚ',
+      title: 'ENERGY DISTRIBUTION',
+      center_label: 'kWh TODAY',
       devices: [
-        { entity: 'sensor.device1', name: 'Urządzenie 1' },
-        { entity: 'sensor.device2', name: 'Urządzenie 2' },
+        { entity: 'sensor.device1', name: 'Device 1' },
+        { entity: 'sensor.device2', name: 'Device 1' },
       ],
     };
   }
@@ -176,7 +176,7 @@ class PiotrasEnergyDonut extends HTMLElement {
     const reszta = Math.max(0, total - sumaZnanych);
     if (reszta > 0.01) {
       suroweDane.push({
-        name:   'Pozostałe',
+        name:   'Others',
         value:  reszta,
         color:  palette[10],
         entity: null,
