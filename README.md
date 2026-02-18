@@ -89,13 +89,20 @@ A high-performance, interactive donut chart for advanced energy distribution ana
 
 </details>
 
-## Features:
-- **Full Visual Editor support** – No more YAML manual editing.
-- **Precision Data** – Daily calculations follow the 24-hour cycle (Midnight is 24:00).
-- **High Performance** – Optimized for speed and low resource usage.
+## Features
+- **Full Visual Editor** — every card has a dedicated GUI editor,
+  no YAML required for setup or customization
+- **SVG-based rendering** — all cards render in pure SVG,
+  sharp and pixel-perfect on any screen resolution
+- **Fully responsive** — cards automatically adapt to any column width
+  in your Lovelace dashboard
+- **Single loader file** — one resource entry in HA loads the entire pack
+- **Per-device configuration** — colors, ranges, icons and thresholds
+  set independently for each entity
+- **Home Assistant native** — uses HA CSS variables, respects your theme,
+  supports `more-info` tap actions
 
 ## Installation
-
 ### Method 1: Via HACS (Recommended)
 1. Open HACS in Home Assistant.
 2. Go to Frontend.
@@ -121,4 +128,4 @@ A high-performance, interactive donut chart for advanced energy distribution ana
 7. Hard reload your browser.
 
 ---
-*Created by Piotr. Strictly engineered for reliability.*
+*Created by Piotras. Strictly engineered for reliability.*
