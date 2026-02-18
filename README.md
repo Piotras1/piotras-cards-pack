@@ -6,23 +6,71 @@ Collection of high-performance Home Assistant cards with advanced visual editors
 
 ### 🍩 Piotras Energy Donut
 A high-performance, interactive donut chart for advanced energy distribution analysis.
-- **Interactive Focus Mode**: Click any segment to isolate it. The selected device enlarges while others fade, providing a crystal-clear view of specific data.
-- **Instant Calculations**: Automatically displays both kWh and the percentage share of total energy for the selected device.
-- **Visual Editor Control**: Adjust the "Auto-reset after click" timer directly in the UI to control how long the detailed info stays visible.
-- **Professional Aesthetics**: Features dynamic callout labels, adjustable ring thickness, and a custom 20-color palette for a premium look.
+
+**Key features:**
+- **Interactive Focus Mode** — click any segment to isolate it; selected device
+  enlarges while others fade for a crystal-clear breakdown
+- **Instant calculations** — shows kWh value and percentage share of total
+  energy for the selected device directly in the chart center
+- **Up to 9 devices** on the chart with automatic "Others" segment for the rest
+- **Smart callout labels** — dynamic leader lines with automatic collision
+  avoidance so labels never overlap, even with many devices
+- **Auto-reset timer** — configurable timeout returns the chart to overview
+  mode automatically after a click
+- **20-color custom palette** — every color individually adjustable
+- **Fully responsive** — SVG scales cleanly to any card width with
+  proportional ring thickness, radius and font sizes
+- **Customizable ring** — adjust radius, stroke width, center label text
+  and font sizes to match your dashboard style
+
+**Visual Editor:** Full GUI editor — manage devices, tweak colors,
+adjust chart dimensions and auto-reset timer without touching YAML.
+
 ![Energy Donut Action](images/energy_donut_action.jpg)
 
 ### 🌡️ Piotras Climate Info
 The ultimate monitoring hub for your home climate and energy usage.
-- **Advanced Energy Summation**: Add multiple kWh sensors per room (one per line) – the card automatically sums them up to show total energy consumption for the area [cite: 2025-09-03].
-- **Activity & Power Monitoring**: Track temperature, humidity, and current device activity (active indicator) in a single row [cite: 2025-09-03].
-- **Full UI Configuration**: No YAML required – add, edit, or reorder devices and adjust layouts (spacing, alignment, widths) directly in the visual editor [cite: 2025-09-03, 2026-02-13].
-- **Highly Customizable**: Toggle visibility of HA icons, emojis, humidity, and active status indicators to match your dashboard style [cite: 2025-09-03].
-![Climate Info Editor](images/climate_info_preview.jpg)
+
+**3 layout modes:**
+- **Standard** — name | icon | values in a single row
+- **Reversed** — icon | name | values (great for icon-first dashboards)
+- **Name on top** — name above, values centered below (compact rooms overview)
+
+**Key features:**
+- Temperature, humidity and energy (kWh) in one clean row per room
+- **Per-device temperature color zones** — set your own Cold / Comfort / Hot
+  thresholds and colors independently for each room
+- **Multiple kWh sensors per room** — automatically summed into one total
+- **Active indicator** — a glowing dot shows when a device is currently running
+- **Per-device HA icon size** — scale each icon independently
+- SVG-based rendering — pixel-perfect on any screen and resolution
+- Responsive — automatically adapts to card width
+
+**Visual Editor:** Full GUI editor — add devices, configure temperature
+color zones with color pickers and range sliders, set icons, entities
+and energy sensors without touching YAML.
+
+![Climate Info Preview](images/climate_info_preview.jpg)
 
 ### 📊 Value Bar
-Clean and modern data bars for any numerical sensor.
-- **Visual Editor:** Real-time preview of bar growth and color thresholds.
+Clean and modern progress bars for any numerical sensor in Home Assistant.
+
+**3 layout modes:**
+- **Standard** — device name on the left, bar in the middle, value on the right
+- **Compact** — bar below the name, ideal for narrow columns
+- **Value on bar** — value displayed directly inside the bar
+
+**Key features:**
+- Fully customizable color gradient (up to 13 colors per bar)
+- Independent min/max range per device — perfect for mixing units (%, W, °C, kWh)
+- Scale labels below each bar with adjustable precision
+- Click any row to open the entity detail in Home Assistant
+- SVG-based rendering — sharp on any screen resolution
+- Responsive — adapts automatically to card width
+
+**Visual Editor:** Full GUI editor — add devices, set color gradients,
+adjust fonts and value colors without touching YAML.
+
 ![Value Bar Preview](images/value_bar_preview.jpg)
 
 ## Features:
