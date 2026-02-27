@@ -64,43 +64,29 @@ and energy sensors without touching YAML.
 ---
 
 ### 🍩 Piotras Energy Donut
-A high-performance, interactive donut chart for advanced energy distribution analysis.
 
-![Energy Donut Action](images/energy_donut_action.jpg)
+An interactive donut chart for energy distribution analysis — available in two layouts with full visual editor.
+
+![Energy Donut Layout 1](images/energy_donut_layout1.jpg) ![Energy Donut Layout 2](images/energy_donut_layout2.jpg)
 
 <details>
 <summary>More info</summary>
 
+**Two layouts:**
+- **Layout 1** — donut with curved callout lines following the ring arc, automatic collision avoidance so labels never overlap
+- **Layout 2** — donut with left/right legend, auto-centered relative to the chart
+
 **Key features:**
-- **Interactive Focus Mode** — click any segment to isolate it; selected device
-  enlarges while others fade for a crystal-clear breakdown
-- **Instant calculations** — shows kWh value and percentage share of total
-  energy for the selected device directly in the chart center
-- **Up to 9 devices** on the chart with automatic "Others" segment for the rest
-- **Smart callout labels** — dynamic leader lines with automatic collision
-  avoidance so labels never overlap, even with many devices
-- **Auto-reset timer** — configurable timeout returns the chart to overview
-  mode automatically after a click
+- **Interactive Focus Mode** — click any segment or legend item to isolate it; selected device enlarges while others fade, showing kWh value and percentage in the chart center
+- **Smart callout lines** — `show_lines: false` hides lines for a clean look; clicking any label reveals its line on demand
+- **Configurable display limit** — show only the top N devices on the chart; the rest are automatically grouped into the "Others" segment. Set `limit: 4` to focus on the biggest consumers, or remove the limit to show everything
+- **Auto-reset timer** — configurable timeout returns to overview automatically after a click
 - **20-color custom palette** — every color individually adjustable
-- **Fully responsive** — SVG scales cleanly to any card width with
-  proportional ring thickness, radius and font sizes
+- **Fully responsive** — SVG scales cleanly to any card width with proportional ring thickness, radius and font sizes
 
 **Visual Editor:** Full GUI — manage devices, tweak colors and dimensions without YAML.
 
 </details>
-
-## Features
-- **Full Visual Editor** — every card has a dedicated GUI editor,
-  no YAML required for setup or customization
-- **SVG-based rendering** — all cards render in pure SVG,
-  sharp and pixel-perfect on any screen resolution
-- **Fully responsive** — cards automatically adapt to any column width
-  in your Lovelace dashboard
-- **Single loader file** — one resource entry in HA loads the entire pack
-- **Per-device configuration** — colors, ranges, icons and thresholds
-  set independently for each entity
-- **Home Assistant native** — uses HA CSS variables, respects your theme,
-  supports `more-info` tap actions
 
 ## Installation
 ### Method 1: Via HACS (Recommended)
