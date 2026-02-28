@@ -86,6 +86,15 @@ An interactive donut chart for energy distribution analysis — available in two
 
 **Visual Editor:** Full GUI — manage devices, tweak colors and dimensions without YAML.
 
+## Advanced Features & Visual Gallery
+
+This card supports more than just Energy! Check out our **pinned discussion** to see how to enable:
+  **Battery & Percentage Mode** (using `na_procenty: true`)
+  **Live Monitoring** for Watts (W) and Amperes (A)
+  **Custom Units & Precision** (using `po_opisie` and `po_przecinku`)
+
+👉 **[View the Full Interactive Guide & Gallery Here](https://github.com/Piotras1/piotras-cards-pack/discussions/2)**
+
 </details>
 
 ## Installation
