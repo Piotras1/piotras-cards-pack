@@ -7,7 +7,7 @@ Collection of high-performance Home Assistant cards with advanced visual editors
 ### 📊 Piotras Value Bar
 Clean and modern progress bars for any numerical sensor.
 
-![Value Bar Preview_2](img/piotras-calue-bar-2.jpg) ![Value Bar Preview_1](img/piotras-calue-bar-1.jpg)
+![Value Bar Preview_2](img/piotras-value-bar-2.jpg) ![Value Bar Preview_1](img/piotras-value-bar-1.jpg)
 
 <details>
 <summary>More info</summary>
@@ -37,7 +37,7 @@ adjust fonts and value colors without touching YAML.
 ### 🌡️ Piotras Climate Info
 The ultimate monitoring hub for your home climate and energy usage.
 
-![Climate Info Preview](images/climate_info_preview.jpg)
+![Value Climate Info_1](img/piotras-climate-info-1.jpg) 
 
 <details>
 <summary>More info</summary>
