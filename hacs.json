@@ -2,7 +2,7 @@
   "name": "Piotras Cards Pack",
   "content_directory": "dist",
   "filename": "piotras-loader-cards.js",
-  "render_readme": true
-  "homeassistant": "2023.1.0"
+  "render_readme": true,
+  "homeassistant": "2023.1.0",
   "category": "plugin"
 }
