@@ -110,7 +110,7 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 7. Click the three dots (top right) and select Resources.
 8. Click Add Resource and enter the following:
  ```
-/hacsfiles/piotras-cards-pack/piotras-loader-cards.js
+ https://github.com/Piotras1/piotras-cards-pack
  ```
    * Resource type: JavaScript Module
 10. Hard reload your browser.
