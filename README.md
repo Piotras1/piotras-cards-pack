@@ -28,6 +28,8 @@ Clean and modern progress bars for any numerical sensor.
 **Visual Editor:** Full GUI editor — add devices, set color gradients,
 adjust fonts and value colors without touching YAML.
 
+👉 **[View the Full Guide Value Bar](https://github.com/Piotras1/piotras-cards-pack/discussions/3)**
+
 </details>
 
 ---
@@ -93,7 +95,7 @@ This card supports more than just Energy! Check out our **pinned discussion** to
   **Live Monitoring** for Watts (W) and Amperes (A)
   **Custom Units & Precision** (using `po_opisie` and `po_przecinku`)
 
-👉 **[View the Full Interactive Guide & Gallery Here](https://github.com/Piotras1/piotras-cards-pack/discussions/2)**
+👉 **[View the Full Guide Energy Donut](https://github.com/Piotras1/piotras-cards-pack/discussions/2)**
 
 </details>
 
