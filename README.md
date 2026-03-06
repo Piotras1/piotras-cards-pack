@@ -120,7 +120,7 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 4. Go to Home Assistant Settings → Dashboards.
 5. Click the three dots (top right) and select Resources.
 6. Click Add Resource and enter the following:
-   * URL: /local/piotras-cards/piotras-loader-cards.js
+   * URL: /local/piotras-cards/piotras-loader-cards.js?v=1.0.0
    * Resource type: JavaScript Module
 7. Hard reload your browser.
 
