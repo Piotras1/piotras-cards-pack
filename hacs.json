@@ -4,4 +4,5 @@
   "filename": "piotras-loader-cards.js",
   "render_readme": true,
   "category": "plugin"
+  "readme": "README.md"
 }
