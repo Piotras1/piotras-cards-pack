@@ -109,9 +109,11 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 6. Go to Home Assistant Settings → Dashboards.
 7. Click the three dots (top right) and select Resources.
 8. Click Add Resource and enter the following:
-   * URL: /hacsfiles/piotras-cards-pack/piotras-loader-cards.js
+ ```
+/hacsfiles/piotras-cards-pack/piotras-loader-cards.js
+ ```
    * Resource type: JavaScript Module
-9. Hard reload your browser.
+10. Hard reload your browser.
 
 ### Method 2: Manual Installation
 1. Download this repository as a ZIP file and extract it.
@@ -120,7 +122,9 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 4. Go to Home Assistant Settings → Dashboards.
 5. Click the three dots (top right) and select Resources.
 6. Click Add Resource and enter the following:
-   * URL: /local/piotras-cards/piotras-loader-cards.js?v=1.0.0
+ ```
+ /local/piotras-cards/piotras-loader-cards.js?v=1.0.0
+ ``` 
    * Resource type: JavaScript Module
 7. Hard reload your browser.
 
