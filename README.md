@@ -99,34 +99,31 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 
 </details>
 
-## Installation
+## ⚙️ Installation
+
 ### Method 1: Via HACS (Recommended)
 1. Open HACS in Home Assistant.
-2. Go to Frontend.
-3. Click the three dots in the top right and select Custom repositories.
-4. Add this repository URL and select Lovelace as the category.
-5. Click Add and then Download.
-6. Go to Home Assistant Settings → Dashboards.
-7. Click the three dots (top right) and select Resources.
-8. Click Add Resource and enter the following:
- ```
- https://github.com/Piotras1/piotras-cards-pack
- ```
-   * Resource type: JavaScript Module
-10. Hard reload your browser.
+2. Go to **Frontend**.
+3. Click the three dots in the top right and select **Custom repositories**.
+4. Add the following URL and select **Dashboard** as the category:
+```
+https://github.com/Piotras1/piotras-cards-pack
+```
+5. Click **Add**, find **Piotras Cards Pack** and click **Download**.
+6. Hard reload your browser (Ctrl+Shift+R).
 
 ### Method 2: Manual Installation
 1. Download this repository as a ZIP file and extract it.
-2. Inside your Home Assistant config/www/ directory, create a new folder named piotras-cards.
-3. Copy all files from the dist/ folder of this repository into config/www/piotras-cards/.
-4. Go to Home Assistant Settings → Dashboards.
-5. Click the three dots (top right) and select Resources.
-6. Click Add Resource and enter the following:
- ```
- /local/piotras-cards/piotras-loader-cards.js?v=1.0.0
- ``` 
-   * Resource type: JavaScript Module
-7. Hard reload your browser.
+2. Inside your Home Assistant `config/www/` directory, create a new folder named `piotras-cards`.
+3. Copy all files from the `dist/` folder into `config/www/piotras-cards/`.
+4. Go to **Settings → Dashboards → Resources**.
+5. Click **Add Resource** and enter:
+```
+/local/piotras-cards/piotras-loader-cards.js?v=1.0.1
+```
+- Resource type: **JavaScript Module**
+6. Hard reload your browser (Ctrl+Shift+R).
 
+  
 ---
 *Created by Piotras. Strictly engineered for reliability.*
