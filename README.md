@@ -10,7 +10,9 @@ Clean and modern progress bars for any numerical sensor.
 ![Value Bar Preview_2](img/piotras-value-bar-2.jpg) ![Value Bar Preview_1](img/piotras-value-bar-1.jpg)
 
 <details>
-<summary><a href="javascript:void(0)">More info</a></summary>
+<summary>
+    <img src="https://img.shields.io/badge/-%F0%9F%94%8D%20More%20info%20(click%20to%20expand)-blue?style=flat-square" alt="More info">
+</summary>
 <br>
 **3 layout modes:**
 - **Standard** — device name on the left, bar in the middle, value on the right
