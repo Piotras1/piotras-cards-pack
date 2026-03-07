@@ -101,6 +101,8 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 
 </details>
 
+---
+
 ## ⚙️ Installation
 
 ### Method 1: Via HACS (Recommended)
