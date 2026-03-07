@@ -10,8 +10,8 @@ Clean and modern progress bars for any numerical sensor.
 ![Value Bar Preview_2](img/piotras-value-bar-2.jpg) ![Value Bar Preview_1](img/piotras-value-bar-1.jpg)
 
 <details>
-<summary>More info</summary>
-
+<summary>🔍 <a href="#">More info (click to expand)</a></summary>
+<br>
 **3 layout modes:**
 - **Standard** — device name on the left, bar in the middle, value on the right
 - **Compact** — bar below the name, ideal for narrow columns
@@ -40,7 +40,8 @@ The ultimate monitoring hub for your home climate and energy usage.
 ![Value Climate Info_1](img/piotras-climate-info-1.jpg) 
 
 <details>
-<summary>More info</summary>
+<summary>🔍 <a href="#">More info (click to expand)</a></summary>
+<br>
 
 **3 layout modes:**
 - **Standard** — name | icon | values in a single row
@@ -72,7 +73,8 @@ An interactive donut chart for energy distribution analysis — available in two
 ![Energy Donut Layout 1](img/piotras-energy-donut-layout-1.jpg) ![Energy Donut Layout 2](img/piotras-energy-donut-layout-2.jpg)
 
 <details>
-<summary>More info</summary>
+<summary>🔍 <a href="#">More info (click to expand)</a></summary>
+<br>
 
 **Two layouts:**
 - **Layout 1** — donut with curved callout lines following the ring arc, automatic collision avoidance so labels never overlap
