@@ -12,6 +12,7 @@ Clean and modern progress bars for any numerical sensor.
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
 <br>
+  
 **3 layout modes:**
 - **Standard** — device name on the left, bar in the middle, value on the right
 - **Compact** — bar below the name, ideal for narrow columns
