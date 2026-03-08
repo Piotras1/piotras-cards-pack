@@ -3,6 +3,6 @@
   "content_directory": "dist",
   "filename": "piotras-loader-cards.js",
   "render_readme": true,
-  "category": "plugin"
+  "category": "plugin",
   "readme": "README.md"
 }
