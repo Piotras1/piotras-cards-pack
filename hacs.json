@@ -1,6 +1,5 @@
 {
   "name": "Piotras Cards Pack",
-  "content_directory": "dist",
   "filename": "piotras-loader-cards.js",
   "render_readme": true
 }
