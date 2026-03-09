@@ -1,6 +1,5 @@
 {
   "name": "Piotras Cards Pack",
-  "type": "plugin",
   "filename": "piotras-loader-cards.js",
   "render_readme": true
 }
