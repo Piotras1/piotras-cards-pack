@@ -1,53 +1,335 @@
-class PiotrasEnergyDonutEditor extends HTMLElement {
-  constructor() { super();this.attachShadow({mode:'open'});this._config={};this._editingDeviceIndex=null;this._openSections={general:true,title:false,center:false,labels:false,chart:false,appearance:false,colors:false,devices:false}; }
-  setConfig(c) { this._config=JSON.parse(JSON.stringify(c));this._render(); }
-  set hass(h) { this._hass=h; }
-  _fire() { this.dispatchEvent(new CustomEvent('config-changed',{detail:{config:this._config},bubbles:true,composed:true})); }
-  _set(k,v) { this._config={...this._config,[k]:v};this._fire();this._render(); }
-  _toggleSection(n) { this._openSections[n]=!this._openSections[n];this._render(); }
-  _f(id,v,l,t='text',extra='') { return `<div style="margin-bottom:10px;"><label style="display:block;font-size:11px;color:#888;margin-bottom:4px;">${l}</label><input type="${t}" id="${id}" value="${v??''}" ${extra} style="width:100%;background:#1e1e1e;border:1px solid #444;border-radius:4px;color:#fff;padding:6px 8px;font-size:13px;box-sizing:border-box;"></div>`; }
-  _select(id,v,l,ops) { return `<div style="margin-bottom:10px;"><label style="display:block;font-size:11px;color:#888;margin-bottom:4px;">${l}</label><select id="${id}" style="width:100%;background:#1e1e1e;border:1px solid #444;border-radius:4px;color:#fff;padding:6px 8px;font-size:13px;box-sizing:border-box;">${ops.map(o=>`<option value="${o.value}" ${o.value==v?'selected':''}>${o.label}</option>`).join('')}</select></div>`; }
-  _toggle(id,v,l) { const on=v!==false;return `<div style="margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;"><label style="font-size:13px;">${l}</label><label style="position:relative;display:inline-block;width:40px;height:22px;flex-shrink:0;"><input type="checkbox" id="${id}" ${on?'checked':''} style="opacity:0;width:0;height:0;"><span style="position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:${on?'#4caf50':'#444'};border-radius:22px;transition:0.2s;"></span><span style="position:absolute;cursor:pointer;top:3px;left:${on?'21px':'3px'};width:16px;height:16px;background:#fff;border-radius:50%;transition:0.2s;"></span></label></div>`; }
-  _color(id,v,l) { const val=v||'';return `<div style="margin-bottom:10px;"><label style="display:block;font-size:11px;color:#888;margin-bottom:4px;">${l}</label><div style="display:flex;align-items:center;gap:8px;"><div id="preview_${id}" style="width:24px;height:24px;border-radius:4px;border:1px solid #555;background:${val||'#333'};flex-shrink:0;cursor:pointer;"></div><input type="color" id="picker_${id}" style="position:absolute;opacity:0;width:0;height:0;" value="${val&&val.startsWith('#')?val:'#ffffff'}"><input type="text" id="${id}" value="${val}" placeholder="e.g. #fff" style="flex:1;background:#1e1e1e;border:1px solid #444;border-radius:4px;color:#fff;padding:6px 8px;font-size:13px;"></div></div>`; }
-  _sec(id,t,cnt) { const o=this._openSections[id];return `<div style="border:1px solid #333;border-radius:8px;margin-bottom:8px;overflow:hidden;"><div id="toggle_${id}" style="padding:10px 14px;background:#1e1e1e;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;"><span style="font-weight:500;">${t}</span><span style="color:#888;font-size:16px;">${o?'▲':'▼'}</span></div>${o?`<div style="padding:14px;">${cnt}</div>`:''}</div>`; }
-  _getPaletteColor(i) { const d=['#E53935','#1E88E5','#43A047','#FB8C00','#8E24AA','#FDD835','#00897B','#6D4C41','#C2185B','#546E7A','#00ACC1','#D81B60','#7CB342','#5E35B1','#FFB300','#039BE5','#F4511E','#3949AB','#00838F','#455A64'];return this._config[`c${i+1}`]||d[i]||'#888'; }
-  _render() {
-    const c=this._config,lay=parseInt(c.layout??1),devs=c.devices||[];
-    let colHtml='<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">';for(let i=1;i<=20;i++){const v=c[`c${i}`]||this._getPaletteColor(i-1);colHtml+=`<div style="display:flex;align-items:center;gap:6px;"><div id="preview_c${i}" style="width:20px;height:20px;border-radius:3px;border:1px solid #555;background:${v};cursor:pointer;"></div><input type="color" id="picker_c${i}" style="position:absolute;opacity:0;width:0;height:0;" value="${v}"><span style="font-size:11px;color:#888;width:20px;">c${i}</span><input type="text" id="c${i}" value="${v}" style="flex:1;background:#1e1e1e;border:1px solid #444;border-radius:4px;color:#fff;padding:4px 6px;font-size:12px;min-width:0;"></div>`;}colHtml+='</div>';
-    const devList=devs.map((d,i)=>{const isE=this._editingDeviceIndex===i;return `<div style="border:1px solid #333;border-radius:6px;padding:8px 10px;margin-bottom:6px;"><div style="display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:14px;height:14px;border-radius:50%;background:${this._getPaletteColor(i)};"></div><div><div style="font-size:13px;font-weight:500;">${d.name||'(no name)'}</div><div style="font-size:11px;color:#666;">${d.entity||''}</div></div></div><div style="display:flex;gap:6px;"><button id="edit_${i}" style="padding:4px 10px;background:#2196f3;border:none;border-radius:4px;color:#fff;cursor:pointer;">✏️</button><button id="del_${i}" style="padding:4px 10px;background:#e53935;border:none;border-radius:4px;color:#fff;cursor:pointer;">🗑️</button></div></div>${isE?`<div style="background:#1a1a1a;border:1px solid #444;border-radius:8px;padding:12px;margin-top:8px;">${this._f('dev_name',d.name,'Name')}${this._f('dev_entity',d.entity,'Entity')}<div style="display:flex;gap:8px;"><button id="dev_save" style="flex:1;padding:8px;background:#4caf50;color:#fff;border:none;border-radius:6px;">💾 Save</button><button id="dev_cancel" style="flex:1;padding:8px;background:#444;color:#fff;border:none;border-radius:6px;">✕</button></div></div>`:''}</div>`;}).join('');
-    this.shadowRoot.innerHTML=`<style>:host{display:block;font-family:sans-serif;color:#fff}*{box-sizing:border-box}input:focus,select:focus{border-color:#2196f3!important}button:hover{opacity:0.8}</style><div style="padding:4px;">
-      ${this._sec('general','⚙️ General',this._f('entity',c.entity,'Total kWh')+this._select('layout',lay,'Layout',[{value:1,label:'1 — Callouts'},{value:2,label:'2 — Legend'}])+this._f('limit',c.limit??9,'Limit','number')+this._f('detail_timeout',c.detail_timeout??15,'Timeout','number'))}
-      ${this._sec('title','🔤 Title',this._toggle('show_title',c.show_title,'Show')+this._toggle('show_line',c.show_line,'Line')+this._f('title',c.title,'Text')+this._f('title_font_size',c.title_font_size??14,'Size','number')+this._color('title_color',c.title_color,'Color'))}
-      ${this._sec('center','🎯 Center',this._f('center_label',c.center_label,'Label')+this._f('center_font_size',c.center_font_size??24,'Size','number'))}
-      ${this._sec('labels','🏷️ Labels',this._f('label_font_size',c.label_font_size??13,'Size','number')+this._color('label_color',c.label_color,'Color')+(lay===1?this._toggle('show_lines',c.show_lines,'Lines')+this._f('margin_from_chart',c.margin_from_chart??50,'Dist','number'):this._f('odleg_okreg',c.odleg_okreg??50,'Offset','number')))}
-      ${this._sec('chart','📐 Chart',this._f('radius_ratio',c.radius_ratio??0.167,'Rad R','number','step="0.001"')+this._f('stroke_ratio',c.stroke_ratio??0.079,'Str R','number','step="0.001"')+this._f('aspect_ratio',c.aspect_ratio??0.77,'Asp R','number','step="0.01"')+this._f('radius',c.radius,'Rad px','number')+this._f('stroke_width',c.stroke_width,'Str px','number')+this._f('svg_width',c.svg_width,'W px','number')+this._f('svg_height',c.svg_height,'H px','number'))}
-      ${this._sec('appearance','🖼️ Look',this._color('background_color',c.background_color,'BG')+this._f('border_radius',c.border_radius,'Radius','number')+this._f('border_width',c.border_width,'Width','number')+this._color('border_color',c.border_color,'Border')+this._f('box_shadow',c.box_shadow,'Shadow'))}
-      ${this._sec('colors','🎨 Palette',colHtml)}
-      ${this._sec('devices','📱 Devices',devList+'<button id="add_device" style="width:100%;padding:8px;background:#333;border:1px dashed #555;border-radius:6px;color:#aaa;cursor:pointer;">+ Add device</button>')}
-    </div>`;this._attachListeners();
-  }
-  _attachListeners() {
-    const sr=this.shadowRoot,s=(id,cb)=>sr.getElementById(id)?.addEventListener('change',e=>cb(e.target.type==='checkbox'?e.target.checked:e.target.value));
-    ['general','title','center','labels','chart','appearance','colors','devices'].forEach(id=>sr.getElementById(`toggle_${id}`)?.addEventListener('click',()=>this._toggleSection(id)));
-    s('entity',v=>this._set('entity',v));s('layout',v=>this._set('layout',parseInt(v)));s('limit',v=>this._set('limit',parseInt(v)));s('detail_timeout',v=>this._set('detail_timeout',parseInt(v)));
-    s('show_title',v=>this._set('show_title',v));s('show_line',v=>this._set('show_line',v));s('title',v=>this._set('title',v));s('title_font_size',v=>this._set('title_font_size',parseInt(v)));
-    s('center_label',v=>this._set('center_label',v));s('center_font_size',v=>this._set('center_font_size',parseInt(v)));
-    s('label_font_size',v=>this._set('label_font_size',parseInt(v)));s('show_lines',v=>this._set('show_lines',v));s('margin_from_chart',v=>this._set('margin_from_chart',parseInt(v)));s('odleg_okreg',v=>this._set('odleg_okreg',parseInt(v)));
-    s('radius_ratio',v=>this._set('radius_ratio',parseFloat(v)));s('stroke_ratio',v=>this._set('stroke_ratio',parseFloat(v)));s('aspect_ratio',v=>this._set('aspect_ratio',parseFloat(v)));
-    ['radius','stroke_width','svg_width','svg_height','border_radius','border_width'].forEach(id=>s(id,v=>this._set(id,parseInt(v))));
-    ['title_color','label_color','background_color','border_color','box_shadow'].forEach(id=>s(id,v=>this._set(id,v)));
-    for(let i=1;i<=20;i++){s(`c${i}`,v=>this._set(`c${i}`,v));this._colSync(`c${i}`);}
-    ['title_color','label_color','background_color','border_color'].forEach(id=>this._colSync(id));
-    (this._config.devices||[]).forEach((d,i)=>{
-      sr.getElementById(`edit_${i}`)?.addEventListener('click',()=>(this._editingDeviceIndex=this._editingDeviceIndex===i?null:i,this._render()));
-      sr.getElementById(`del_${i}`)?.addEventListener('click',()=>{const devs=[...this._config.devices];devs.splice(i,1);this._set('devices',devs);this._editingDeviceIndex=null;});
-    });
-    sr.getElementById('add_device')?.addEventListener('click',()=>{const devs=[...(this._config.devices||[])];devs.push({name:'New',entity:''});this._set('devices',devs);this._editingDeviceIndex=devs.length-1;});
-    if(this._editingDeviceIndex!==null){
-      sr.getElementById('dev_save')?.addEventListener('click',()=>{const n=sr.getElementById('dev_name').value,e=sr.getElementById('dev_entity').value,ds=[...this._config.devices];ds[this._editingDeviceIndex]={name:n,entity:e};this._set('devices',ds);this._editingDeviceIndex=null;});
-      sr.getElementById('dev_cancel')?.addEventListener('click',()=>(this._editingDeviceIndex=null,this._render()));
-    }
-  }
-  _colSync(id){const sr=this.shadowRoot,t=sr.getElementById(id),p=sr.getElementById(`picker_${id}`),v=sr.getElementById(`preview_${id}`);if(t&&p&&v){v.onclick=()=>p.click();p.oninput=()=>{t.value=p.value;v.style.background=p.value;this._set(id,p.value);};}}
+/**
+ * piotras-energy-donut-editor.js
+ * Visual editor for piotras-energy-donut card
+ * Part of piotras-cards collection
+ */
+
+const PED_STYLES = `
+  :host { display:block; font-family:var(--paper-font-body1_-_font-family,Roboto,sans-serif); }
+  .tabs { display:flex; flex-wrap:wrap; gap:4px; padding:8px 8px 0; background:var(--secondary-background-color,rgba(255,255,255,0.03)); border-bottom:1px solid var(--divider-color,rgba(255,255,255,0.1)); }
+  .tab { padding:6px 11px; border-radius:6px 6px 0 0; font-size:12px; font-weight:500; cursor:pointer; border:1px solid transparent; border-bottom:none; color:var(--secondary-text-color); background:transparent; transition:all 0.15s; white-space:nowrap; }
+  .tab:hover { background:var(--table-row-background-color,rgba(255,255,255,0.06)); color:var(--primary-text-color); }
+  .tab.active { background:var(--card-background-color,#1e1e1e); color:var(--primary-color,#03a9f4); border-color:var(--divider-color,rgba(255,255,255,0.1)); }
+  .panel { padding:14px 12px; display:none; }
+  .panel.active { display:block; }
+  .field-row { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .field-row label { flex:0 0 150px; font-size:12px; color:var(--secondary-text-color); }
+  .field-row input[type="text"],.field-row input[type="number"],.field-row select { flex:1; background:var(--input-fill-color,rgba(255,255,255,0.08)); border:1px solid var(--input-ink-color,rgba(255,255,255,0.2)); border-radius:4px; padding:6px 8px; font-size:12px; color:var(--primary-text-color); min-width:0; }
+  .field-row input:focus,.field-row select:focus { outline:none; border-color:var(--primary-color,#03a9f4); }
+  .field-row select option { background:var(--card-background-color,#1e1e1e); }
+  .toggle-wrap { display:flex; align-items:center; gap:10px; margin-bottom:10px; padding:4px 0; }
+  .toggle-wrap > label:first-child { flex:0 0 auto; font-size:12px; color:var(--primary-text-color); cursor:pointer; }
+  .toggle { position:relative; width:38px; height:22px; flex-shrink:0; cursor:pointer; }
+  .toggle input { opacity:0; width:0; height:0; position:absolute; }
+  .toggle-track { position:absolute; inset:0; background:rgba(255,255,255,0.2); border-radius:22px; transition:background 0.2s; }
+  .toggle input:checked + .toggle-track { background:#43a047; }
+  .toggle-thumb { position:absolute; top:3px; left:3px; width:16px; height:16px; background:white; border-radius:50%; transition:transform 0.2s; pointer-events:none; box-shadow:0 1px 3px rgba(0,0,0,0.3); }
+  .toggle input:checked ~ .toggle-thumb { transform:translateX(16px); }
+  .color-wrap { display:flex; align-items:center; gap:6px; flex:1; min-width:0; }
+  .color-preview { width:26px; height:26px; border-radius:4px; border:1px solid rgba(255,255,255,0.2); flex-shrink:0; cursor:pointer; }
+  .color-wrap input[type="text"] { flex:1; min-width:0; background:var(--input-fill-color,rgba(255,255,255,0.08)); border:1px solid var(--input-ink-color,rgba(255,255,255,0.2)); border-radius:4px; padding:6px 8px; font-size:12px; color:var(--primary-text-color); }
+  .color-wrap input[type="text"]:focus { outline:none; border-color:var(--primary-color,#03a9f4); }
+  input[type="color"] { width:0; height:0; opacity:0; position:absolute; }
+  .hint { font-size:11px; color:var(--secondary-text-color); opacity:0.7; margin:-4px 0 10px 0; }
+  .separator { height:1px; background:var(--divider-color,rgba(255,255,255,0.1)); margin:12px 0; }
+  .palette-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+  .palette-row { display:flex; align-items:center; gap:6px; }
+  .palette-row span { font-size:11px; color:var(--secondary-text-color); width:22px; flex-shrink:0; }
+  .palette-row input[type="text"] { flex:1; background:var(--input-fill-color,rgba(255,255,255,0.08)); border:1px solid var(--input-ink-color,rgba(255,255,255,0.2)); border-radius:4px; padding:4px 6px; font-size:11px; color:var(--primary-text-color); min-width:0; font-family:monospace; }
+  .device-item { display:flex; align-items:center; gap:8px; padding:8px 10px; margin-bottom:6px; border:1px solid var(--divider-color,rgba(255,255,255,0.12)); border-radius:6px; background:var(--secondary-background-color,rgba(255,255,255,0.04)); }
+  .device-dot { width:14px; height:14px; border-radius:50%; flex-shrink:0; }
+  .device-info { flex:1; min-width:0; }
+  .device-name { font-size:12px; font-weight:500; color:var(--primary-text-color); }
+  .device-entity { font-size:11px; color:var(--secondary-text-color); }
+  .dev-btn { background:none; border:1px solid var(--divider-color,rgba(255,255,255,0.15)); border-radius:4px; padding:3px 8px; cursor:pointer; font-size:11px; color:var(--secondary-text-color); flex-shrink:0; }
+  .dev-btn:hover { background:rgba(255,255,255,0.06); color:var(--primary-text-color); }
+  .dev-btn.del:hover { border-color:#e53935; color:#e53935; }
+  .add-btn { width:100%; padding:7px; background:none; border:1px dashed var(--primary-color,#03a9f4); border-radius:6px; color:var(--primary-color,#03a9f4); font-size:12px; cursor:pointer; }
+  .add-btn:hover { background:rgba(3,169,244,0.08); }
+  .dev-form { border:1px solid var(--primary-color,#03a9f4); border-radius:8px; padding:12px; margin-bottom:10px; background:rgba(3,169,244,0.04); }
+  .dev-form-title { font-size:12px; font-weight:500; color:var(--primary-color,#03a9f4); margin-bottom:10px; }
+  .form-actions { display:flex; gap:8px; margin-top:10px; }
+  .btn-save { flex:1; padding:6px; background:var(--primary-color,#03a9f4); border:none; border-radius:4px; color:white; font-size:12px; cursor:pointer; font-weight:500; }
+  .btn-cancel { flex:1; padding:6px; background:none; border:1px solid var(--divider-color,rgba(255,255,255,0.2)); border-radius:4px; color:var(--secondary-text-color); font-size:12px; cursor:pointer; }
+`;
+
+const PED_DEFAULT_PALETTE = ['#E53935','#1E88E5','#43A047','#FB8C00','#8E24AA','#FDD835','#00897B','#6D4C41','#C2185B','#546E7A','#00ACC1','#D81B60','#7CB342','#5E35B1','#FFB300','#039BE5','#F4511E','#3949AB','#00838F','#455A64'];
+
+function pedRow(label, input) { return `<div class="field-row"><label>${label}</label>${input}</div>`; }
+function pedText(id, val, ph='') { return `<input type="text" data-key="${id}" value="${val??''}" placeholder="${ph}">`; }
+function pedNum(id, val, min, max, step=1) { return `<input type="number" data-key="${id}" value="${val??''}" min="${min}" max="${max}" step="${step}">`; }
+function pedSel(id, val, opts) { return `<select data-key="${id}">${opts.map(o=>`<option value="${o.value}" ${String(o.value)===String(val)?'selected':''}>${o.label}</option>`).join('')}</select>`; }
+function pedColor(id, val, ph='') {
+  const bg = val||'transparent', pv = (val&&val.startsWith('#'))?val:'#ffffff';
+  return `<div class="color-wrap"><div class="color-preview" style="background:${bg}" data-colorpicker="${id}"></div><input type="color" data-colorinput="${id}" value="${pv}"><input type="text" data-key="${id}" value="${val??''}" placeholder="${ph||'e.g. #ffffff'}"></div>`;
 }
-customElements.define('piotras-energy-donut-editor', PiotrasEnergyDonutEditor);
+function pedToggle(key, val, label) {
+  const checked = val !== false && val !== 'false' ? 'checked' : '';
+  return `<div class="toggle-wrap"><label>${label}</label><label class="toggle"><input type="checkbox" data-togglekey="${key}" ${checked}><div class="toggle-track"></div><div class="toggle-thumb"></div></label></div>`;
+}
+
+class PiotrasEnergyDonutEditor extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this._config = {};
+    this._activeTab = 'general';
+    this._editingDeviceIndex = null;
+    this._devDraft = {};
+  }
+
+  set hass(h) { this._hass = h; }
+  setConfig(c) { this._config = JSON.parse(JSON.stringify(c)); this._render(); }
+  _fire() { this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: this._config }, bubbles: true, composed: true })); }
+  _set(k, v) { this._config = { ...this._config, [k]: v }; this._fire(); this._render(); }
+
+  _getPaletteColor(i) { return this._config[`c${i+1}`] || PED_DEFAULT_PALETTE[i] || '#888'; }
+
+  _tabs() {
+    const tabs = [
+      { id: 'general',    label: '⚙️ General' },
+      { id: 'title',      label: '🔤 Title' },
+      { id: 'center',     label: '🎯 Center' },
+      { id: 'labels',     label: '🏷️ Labels' },
+      { id: 'chart',      label: '📐 Chart' },
+      { id: 'appearance', label: '🖼️ Look' },
+      { id: 'palette',    label: '🎨 Palette' },
+      { id: 'devices',    label: '📱 Devices' },
+    ];
+    return `<div class="tabs">${tabs.map(t =>
+      `<div class="tab ${this._activeTab===t.id?'active':''}" data-tab="${t.id}">${t.label}</div>`
+    ).join('')}</div>`;
+  }
+
+  _panelGeneral() {
+    const c = this._config, lay = parseInt(c.layout??1);
+    return `
+      ${pedRow('Total entity', pedText('entity', c.entity, 'sensor.total_kwh'))}
+      ${pedRow('Layout', pedSel('layout', lay, [{value:1,label:'1 — Callouts'},{value:2,label:'2 — Legend'}]))}
+      ${pedRow('Device limit', pedNum('limit', c.limit??9, 1, 20))}
+      ${pedRow('Detail timeout (s)', pedNum('detail_timeout', c.detail_timeout??15, 1, 60))}
+    `;
+  }
+
+  _panelTitle() {
+    const c = this._config;
+    return `
+      ${pedToggle('show_title', c.show_title, 'Show title')}
+      ${pedToggle('show_line', c.show_line, 'Show line under title')}
+      <div class="separator"></div>
+      ${pedRow('Title text', pedText('title', c.title, 'e.g. Energy usage'))}
+      ${pedRow('Font size (px)', pedNum('title_font_size', c.title_font_size??14, 8, 40))}
+      ${pedRow('Color for title and center', pedColor('title_color', c.title_color))}
+      <div class="separator"></div>
+      ${pedRow('Font style (whole card)', pedSel('font_style', c.font_style??1, [
+        {value:1, label:'1 — Normal'},
+        {value:2, label:'2 — Small caps'},
+        {value:3, label:'3 — Monospace'},
+        {value:4, label:'4 — Uppercase spaced'},
+      ]))}
+      <div class="hint">Applies to all text in the card: title, labels, center, legend.</div>
+    `;
+  }
+
+  _panelCenter() {
+    const c = this._config;
+    return `
+      ${pedRow('Center label', pedText('center_label', c.center_label, 'e.g. Total'))}
+      ${pedRow('Font size (px)', pedNum('center_font_size', c.center_font_size??24, 8, 60))}
+    `;
+  }
+
+  _panelLabels() {
+    const c = this._config, lay = parseInt(c.layout??1);
+    return `
+      ${pedRow('Font size (px)', pedNum('label_font_size', c.label_font_size??13, 6, 30))}
+      ${pedRow('Color', pedColor('label_color', c.label_color))}
+      <div class="separator"></div>
+      ${lay === 1
+        ? pedToggle('show_lines', c.show_lines, 'Show connector lines') +
+          pedRow('Distance from chart', pedNum('margin_from_chart', c.margin_from_chart??50, 0, 200))
+        : pedRow('Legend offset', pedNum('odleg_okreg', c.odleg_okreg??50, 0, 200))
+      }
+    `;
+  }
+
+  _panelChart() {
+    const c = this._config;
+    return `
+      <div class="hint">Ratio values scale automatically. Override with px values below.</div>
+      ${pedRow('Aspect ratio', pedNum('aspect_ratio', c.aspect_ratio??0.77, 0.1, 2, 0.01))}
+      <div class="separator"></div>
+      ${pedRow('Radius (px)', pedNum('radius', c.radius, 10, 500))}
+      ${pedRow('Stroke width (px)', pedNum('stroke_width', c.stroke_width, 1, 100))}
+      <div class="separator"></div>
+      ${pedRow('SVG width (px)', pedNum('svg_width', c.svg_width, 50, 1000))}
+    `;
+  }
+
+  _panelAppearance() {
+    const c = this._config;
+    return `
+      ${pedRow('Background', pedColor('background_color', c.background_color))}
+      <div class="hint">Empty = HA theme card background.</div>
+      ${pedRow('Border radius (px)', pedNum('border_radius', c.border_radius, 0, 60))}
+      ${pedRow('Border width (px)', pedNum('border_width', c.border_width, 0, 20))}
+      ${pedRow('Border color', pedColor('border_color', c.border_color))}
+      ${pedRow('Box shadow', pedText('box_shadow', c.box_shadow, 'e.g. 0 2px 8px rgba(0,0,0,0.4)'))}
+    `;
+  }
+
+  _panelPalette() {
+    let html = '<div class="palette-grid">';
+    for (let i = 1; i <= 20; i++) {
+      const key = `c${i}`, val = this._config[key] || PED_DEFAULT_PALETTE[i-1];
+      const pv = val.startsWith('#') ? val : '#ffffff';
+      html += `<div class="palette-row">
+        <div class="color-preview" style="background:${val}" data-colorpicker="${key}"></div>
+        <input type="color" data-colorinput="${key}" value="${pv}">
+        <span>${key}</span>
+        <input type="text" data-key="${key}" value="${val}" placeholder="#rrggbb">
+      </div>`;
+    }
+    html += '</div>';
+    return `<div class="hint">Click color square to open picker or type hex value manually.</div>${html}`;
+  }
+
+  _panelDevices() {
+    const devs = this._config.devices || [];
+    const isEditing = this._editingDeviceIndex !== null;
+
+    const listHtml = devs.map((d, i) => `
+      <div class="device-item">
+        <div class="device-dot" style="background:${this._getPaletteColor(i)}"></div>
+        <div class="device-info">
+          <div class="device-name">${d.name || '(no name)'}</div>
+          <div class="device-entity">${d.entity || ''}</div>
+        </div>
+        <button class="dev-btn" data-edit="${i}">✏️</button>
+        <button class="dev-btn del" data-del="${i}">🗑️</button>
+      </div>`).join('');
+
+    const formHtml = isEditing ? `
+      <div class="dev-form">
+        <div class="dev-form-title">${this._editingDeviceIndex === -1 ? '+ New device' : 'Edit device'}</div>
+        ${pedRow('Name', `<input type="text" data-draft="name" value="${this._devDraft.name||''}" placeholder="e.g. Washing machine">`)}
+        ${pedRow('Entity', `<input type="text" data-draft="entity" value="${this._devDraft.entity||''}" placeholder="sensor.xxx_kwh">`)}
+        <div class="form-actions">
+          <button class="btn-save" id="ped-save-dev">Save</button>
+          <button class="btn-cancel" id="ped-cancel-dev">Cancel</button>
+        </div>
+      </div>` : '';
+
+    return `
+      ${formHtml}
+      ${listHtml}
+      ${!isEditing ? `<button class="add-btn" id="ped-add-dev">+ Add device</button>` : ''}
+    `;
+  }
+
+  _render() {
+    const panels = {
+      general:    this._panelGeneral(),
+      title:      this._panelTitle(),
+      center:     this._panelCenter(),
+      labels:     this._panelLabels(),
+      chart:      this._panelChart(),
+      appearance: this._panelAppearance(),
+      palette:    this._panelPalette(),
+      devices:    this._panelDevices(),
+    };
+
+    const panelsHtml = Object.entries(panels).map(([id, html]) =>
+      `<div class="panel ${this._activeTab===id?'active':''}" data-panel="${id}">${html}</div>`
+    ).join('');
+
+    this.shadowRoot.innerHTML = `<style>${PED_STYLES}</style>${this._tabs()}${panelsHtml}`;
+    this._attachListeners();
+  }
+
+  _attachListeners() {
+    const root = this.shadowRoot;
+
+    root.querySelectorAll('.tab[data-tab]').forEach(el =>
+      el.addEventListener('click', () => { this._activeTab = el.dataset.tab; this._render(); })
+    );
+
+    root.querySelectorAll('[data-key]').forEach(el =>
+      el.addEventListener('change', () => {
+        let v = el.value;
+        if (el.type === 'number') { v = parseFloat(v); if (isNaN(v)) return; }
+        const intKeys = ['layout','limit','detail_timeout','title_font_size','center_font_size','label_font_size','margin_from_chart','odleg_okreg','border_radius','border_width','font_style'];
+        if (intKeys.includes(el.dataset.key)) v = parseInt(v);
+        this._set(el.dataset.key, v);
+      })
+    );
+
+    root.querySelectorAll('[data-togglekey]').forEach(el =>
+      el.addEventListener('change', () => this._set(el.dataset.togglekey, el.checked))
+    );
+
+    root.querySelectorAll('.color-preview[data-colorpicker]').forEach(p =>
+      p.addEventListener('click', () => root.querySelector(`[data-colorinput="${p.dataset.colorpicker}"]`)?.click())
+    );
+
+    root.querySelectorAll('input[type="color"][data-colorinput]').forEach(picker =>
+      picker.addEventListener('input', () => {
+        const key = picker.dataset.colorinput;
+        const txt = root.querySelector(`[data-key="${key}"]`);
+        const prev = root.querySelector(`[data-colorpicker="${key}"]`);
+        if (txt) txt.value = picker.value;
+        if (prev) prev.style.background = picker.value;
+        this._set(key, picker.value);
+      })
+    );
+
+    root.querySelectorAll('[data-edit]').forEach(btn =>
+      btn.addEventListener('click', () => {
+        const i = parseInt(btn.dataset.edit);
+        this._editingDeviceIndex = i;
+        this._devDraft = { ...this._config.devices[i] };
+        this._activeTab = 'devices';
+        this._render();
+      })
+    );
+
+    root.querySelectorAll('[data-del]').forEach(btn =>
+      btn.addEventListener('click', () => {
+        const devs = [...this._config.devices];
+        devs.splice(parseInt(btn.dataset.del), 1);
+        this._editingDeviceIndex = null;
+        this._set('devices', devs);
+      })
+    );
+
+    root.getElementById('ped-add-dev')?.addEventListener('click', () => {
+      this._editingDeviceIndex = -1;
+      this._devDraft = { name: '', entity: '' };
+      this._render();
+    });
+
+    root.querySelectorAll('[data-draft]').forEach(el =>
+      el.addEventListener('input', () => { this._devDraft[el.dataset.draft] = el.value; })
+    );
+
+    root.getElementById('ped-save-dev')?.addEventListener('click', () => {
+      if (!this._devDraft.entity) { alert('Entity is required!'); return; }
+      const devs = [...(this._config.devices || [])];
+      if (this._editingDeviceIndex === -1) devs.push({ ...this._devDraft });
+      else devs[this._editingDeviceIndex] = { ...this._devDraft };
+      this._editingDeviceIndex = null;
+      this._devDraft = {};
+      this._set('devices', devs);
+    });
+
+    root.getElementById('ped-cancel-dev')?.addEventListener('click', () => {
+      this._editingDeviceIndex = null;
+      this._devDraft = {};
+      this._render();
+    });
+  }
+}
+
+if (!customElements.get('piotras-energy-donut-editor')) {
+  customElements.define('piotras-energy-donut-editor', PiotrasEnergyDonutEditor);
+}

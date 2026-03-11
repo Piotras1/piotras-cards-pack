@@ -15,6 +15,7 @@ class PiotrasClimateInfo extends HTMLElement {
   _resolveIconColor(tempValue,device) { const coldMax=device.temp_cold_max??18,comfortMax=device.temp_comfort_max??23,coldColor=device.temp_cold_color||'#3498db',comfortColor=device.temp_comfort_color||'#27ae60',hotColor=device.temp_hot_color||'#e74c3c';if(tempValue<=coldMax)return coldColor;if(tempValue<=comfortMax)return comfortColor;return hotColor; }
   _getFontFamily(fontStyle) { if(fontStyle===3)return '"Courier New",Courier,monospace';return 'Segoe UI,Roboto,sans-serif'; }
   _getFontVariant(fontStyle) { return fontStyle===2?'small-caps':'normal'; }
+  _getFontStyleAttr(fontStyle) { return fontStyle===4?'text-transform:uppercase;letter-spacing:1.5px;':''; }
   _estW(text,fontSize) { let w=0;for(const char of[...text]){const cp=char.codePointAt(0);if(cp===0xFE0F)w+=0;else if(cp===0x20)w+=fontSize*0.28;else if(cp>0xFFFF)w+=fontSize*0.85;else w+=fontSize*0.62;}return w; }
   _truncateName(name,maxWidth,fontSize) { if(!name)return '';const ellipsis='…';let truncated=name;while(truncated.length>0&&this._estW(truncated,fontSize)+this._estW(ellipsis,fontSize)>maxWidth+15)truncated=truncated.slice(0,-1);return truncated.length<name.length?truncated+ellipsis:name; }
   _calcRowContentWidth(device,cfg) {
@@ -35,7 +36,7 @@ class PiotrasClimateInfo extends HTMLElement {
     return nW+icW+valsW+dotW;
   }
   _buildRowSVG(device,cfg,rowIndex,svgWidth) {
-    const {layout,nameWidth,columnGap,showName,showTemp,showHuma,showKwh,showJob,showIconDevice,showIconHa,fontSize,fontSizeName,fontFamily,fontVariant,nAlign,deviceNameColor,valueColor}=cfg;
+    const {layout,nameWidth,columnGap,showName,showTemp,showHuma,showKwh,showJob,showIconDevice,showIconHa,fontSize,fontSizeName,fontFamily,fontVariant,fontStyleAttr,nAlign,deviceNameColor,valueColor}=cfg;
     const iconSize=device.icon_size?Math.round(device.icon_size*(cfg.scaleFactor??1)):cfg.defaultIconSize;
     const sTemp=this._getState(device.entity_temp),sHuma=this._getState(device.entity_huma),sPraca=this._getState(device.entity_praca);
     const tempVal=sTemp?parseFloat(sTemp.state):null,t=tempVal!==null?tempVal.toFixed(1):null,h=sHuma?Math.round(parseFloat(sHuma.state)):null;
@@ -67,17 +68,17 @@ class PiotrasClimateInfo extends HTMLElement {
     };
     if(layout===3){
       const nameLineY=fontSizeName+2,valLineY=fontSizeName+fontSize+12;
-      if(showName){const anchor=nAlign==='center'?'middle':nAlign==='right'?'end':'start',nx=nAlign==='center'?svgWidth/2:nAlign==='right'?svgWidth:0,labelName=this._truncateName(device.name||'',svgWidth,fontSizeName);elements+=`<text x="${nx}" y="${nameLineY}" text-anchor="${anchor}" font-size="${fontSizeName}" font-family="${fontFamily}" font-variant="${fontVariant}" fill="${nameColor}" font-weight="500">${labelName}</text>`;}
+      if(showName){const anchor=nAlign==='center'?'middle':nAlign==='right'?'end':'start',nx=nAlign==='center'?svgWidth/2:nAlign==='right'?svgWidth:0,labelName=this._truncateName(device.name||'',svgWidth,fontSizeName);elements+=`<text x="${nx}" y="${nameLineY}" text-anchor="${anchor}" font-size="${fontSizeName}" font-family="${fontFamily}" font-variant="${fontVariant}" fill="${nameColor}" font-weight="500" style="${fontStyleAttr}">${labelName}</text>`;}
       const icW=showIconHa&&device.icon_ha?iconSize+columnGap:0,valsW=estValsWidth();let vx=Math.max(0,(svgWidth-icW-valsW)/2);
       if(showIconHa&&device.icon_ha){const iy=valLineY-iconSize+Math.round(fontSize*0.35);elements+=`<foreignObject x="${vx}" y="${iy}" width="${iconSize}" height="${iconSize}"><ha-icon xmlns="http://www.w3.org/1999/xhtml" icon="${device.icon_ha}" style="width:${iconSize}px;height:${iconSize}px;--mdc-icon-size:${iconSize}px;color:${iconColor};display:block;"></ha-icon></foreignObject>`;vx+=iconSize+columnGap;}
-      const tspans=buildValueTspans();if(tspans)elements+=`<text x="${vx}" y="${valLineY}" font-family="${fontFamily}" font-variant="${fontVariant}">${tspans}</text>`;
+      const tspans=buildValueTspans();if(tspans)elements+=`<text x="${vx}" y="${valLineY}" font-family="${fontFamily}" font-variant="${fontVariant}" style="${fontStyleAttr}">${tspans}</text>`;
     } else {
       let xName,xIcon,xVals;
       if(layout===1){xName=0;xIcon=(showName?nameWidth+columnGap:0);xVals=xIcon+(showIconHa&&device.icon_ha?iconSize+columnGap:0);}
       else{xIcon=0;xName=(showIconHa&&device.icon_ha?iconSize+columnGap:0);xVals=xName+(showName?nameWidth+columnGap:0);}
-      if(showName){const anchor=nAlign==='center'?'middle':nAlign==='right'?'end':'start',nx=nAlign==='center'?xName+nameWidth/2:nAlign==='right'?xName+nameWidth:xName,labelName=this._truncateName(device.name||'',nameWidth,fontSizeName);elements+=`<text x="${nx}" y="${nameY}" text-anchor="${anchor}" font-size="${fontSizeName}" font-family="${fontFamily}" font-variant="${fontVariant}" fill="${nameColor}" font-weight="500">${labelName}</text>`;}
+      if(showName){const anchor=nAlign==='center'?'middle':nAlign==='right'?'end':'start',nx=nAlign==='center'?xName+nameWidth/2:nAlign==='right'?xName+nameWidth:xName,labelName=this._truncateName(device.name||'',nameWidth,fontSizeName);elements+=`<text x="${nx}" y="${nameY}" text-anchor="${anchor}" font-size="${fontSizeName}" font-family="${fontFamily}" font-variant="${fontVariant}" fill="${nameColor}" font-weight="500" style="${fontStyleAttr}">${labelName}</text>`;}
       if(showIconHa&&device.icon_ha){const iy=midY-iconSize/2;elements+=`<foreignObject x="${xIcon}" y="${iy}" width="${iconSize}" height="${iconSize}"><ha-icon xmlns="http://www.w3.org/1999/xhtml" icon="${device.icon_ha}" style="width:${iconSize}px;height:${iconSize}px;--mdc-icon-size:${iconSize}px;color:${iconColor};display:block;"></ha-icon></foreignObject>`;}
-      const tspans=buildValueTspans();if(tspans)elements+=`<text x="${xVals}" y="${textY}" font-family="${fontFamily}" font-variant="${fontVariant}">${tspans}</text>`;
+      const tspans=buildValueTspans();if(tspans)elements+=`<text x="${xVals}" y="${textY}" font-family="${fontFamily}" font-variant="${fontVariant}" style="${fontStyleAttr}">${tspans}</text>`;
     }
     elements+=`<rect x="0" y="0" width="${svgWidth}" height="${rowH}" fill="transparent" rx="4" style="cursor:pointer;"/>`;
     return {svgContent:`<g class="climate-row" data-tap-entity="${tapEntity}" data-tap-action="${tapAction}" style="cursor:pointer;">${elements}</g>`,height:rowH};
@@ -98,15 +99,15 @@ class PiotrasClimateInfo extends HTMLElement {
     const columnGap=Math.round((cfg.column_gap??15)*scaleFactor),spacing=Math.round((cfg.spacing??32)*scaleFactor),spacingSvg=cfg.spacing_svg??0;
     const fontSize=Math.round((cfg.font_size??13)*scaleFactor),fontSizeName=Math.round((cfg.font_size_name??14)*scaleFactor),headerFontSize=Math.round((cfg.header_font_size??16)*scaleFactor);
     const headerFontColor=cfg.header_font_color||'var(--primary-text-color)',deviceNameColor=cfg.device_name_color||'',valueColor=cfg.value_color||'';
-    const fontFamily=this._getFontFamily(fontStyle),fontVariant=this._getFontVariant(fontStyle);
+    const fontFamily=this._getFontFamily(fontStyle),fontVariant=this._getFontVariant(fontStyle),fontStyleAttr=this._getFontStyleAttr(fontStyle);
     const alignMap={1:'left',2:'center',3:'right'},nAlign=alignMap[cfg.name_align??1]||'left',hAlign=alignMap[headerAlign]||'left';
-    const rowCfg={layout,nameWidth,defaultIconSize,columnGap,showName,showTemp,showHuma,showKwh,showJob,przelaczNaMoc,showIconDevice,showIconHa,fontSize,fontSizeName,fontFamily,fontVariant,nAlign,deviceNameColor,valueColor,scaleFactor};
+    const rowCfg={layout,nameWidth,defaultIconSize,columnGap,showName,showTemp,showHuma,showKwh,showJob,przelaczNaMoc,showIconDevice,showIconHa,fontSize,fontSizeName,fontFamily,fontVariant,fontStyleAttr,nAlign,deviceNameColor,valueColor,scaleFactor};
     let contentWidth=200;
     devices.forEach(device=>{const w=this._calcRowContentWidth(device,rowCfg);if(w>contentWidth)contentWidth=w;});
     if(showHeader&&header){const hw=this._estW(header,headerFontSize)*1.1;if(hw>contentWidth)contentWidth=hw;}
     const svgWidth=Math.round(contentWidth)+10;
     let headerSVG='',headerBlockH=0;
-    if(showHeader&&header){const hx=hAlign==='center'?svgWidth/2:hAlign==='right'?svgWidth:0,anchor=hAlign==='center'?'middle':hAlign==='right'?'end':'start';headerBlockH=headerFontSize+16;headerSVG=`<text x="${hx}" y="${headerFontSize}" text-anchor="${anchor}" font-size="${headerFontSize}" font-family="${fontFamily}" font-variant="${fontVariant}" fill="${headerFontColor}" font-weight="bold">${header}</text><line x1="0" y1="${headerFontSize+8}" x2="${svgWidth}" y2="${headerFontSize+8}" stroke="rgba(128,128,128,0.25)" stroke-width="1"/>`;}
+    if(showHeader&&header){const hx=hAlign==='center'?svgWidth/2:hAlign==='right'?svgWidth:0,anchor=hAlign==='center'?'middle':hAlign==='right'?'end':'start';headerBlockH=headerFontSize+16;headerSVG=`<text x="${hx}" y="${headerFontSize}" text-anchor="${anchor}" font-size="${headerFontSize}" font-family="${fontFamily}" font-variant="${fontVariant}" fill="${headerFontColor}" font-weight="bold" style="${fontStyleAttr}">${header}</text><line x1="0" y1="${headerFontSize+8}" x2="${svgWidth}" y2="${headerFontSize+8}" stroke="rgba(128,128,128,0.25)" stroke-width="1"/>`;}
     let svgBody='',glowDefs='',currentY=0;
     devices.forEach((device,i)=>{const{svgContent,height}=this._buildRowSVG(device,rowCfg,i,svgWidth);glowDefs+=`<filter id="glow_${i}" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`;svgBody+=`<g transform="translate(0,${currentY})">${svgContent}</g>`;currentY+=height+spacing;});
     const totalHeight=Math.max(10,currentY-spacing),svgHeight=headerBlockH+totalHeight+spacingSvg;

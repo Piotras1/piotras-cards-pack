@@ -65,7 +65,7 @@ class PiotrasValueBar extends HTMLElement {
     const fontSize=cfg.font_size??13,fontStyle=cfg.font_style??1,precision=Math.min(Math.max(cfg.gradient_precision??1,1),8),labelFontSize=cfg.label_font_size??9;
     const header=cfg.header??'',headerFontSize=cfg.header_font_size??15,headerAlign=cfg.header_align??1,headerFontColor=cfg.header_font_color||'var(--primary-text-color)';
     const deviceNameColor=cfg.device_name_color||'',valueColor=cfg.value_color||'',devices=cfg.devices??[],valueFontSize=fontSize-1;
-    const fontStyleCSS=fontStyle===2?'font-variant-caps: small-caps;':'',fontFamilyCSS=fontStyle===3?'font-family: monospace;':'';
+    const fontStyleCSS=fontStyle===2?'font-variant-caps: small-caps;':fontStyle===4?'text-transform: uppercase; letter-spacing: 1.5px;':'',fontFamilyCSS=fontStyle===3?'font-family: monospace;':'';
     const headerAnchor={1:'start',2:'middle',3:'end'}[headerAlign]||'start';
     const renderCfg={barLength,barHeight,showValues,precision,fontSize,fontStyleCSS,fontFamilyCSS,valueFontSize,labelFontSize,deviceNameColor,valueColor,valuePosition,spacing,nameWidth,nameBarGap,barValueGap,valueOffset};
     const svgWidth=cardLayout===2?barLength+8:cardLayout===3?nameWidth+barLength+8:nameWidth+barLength+(showValues?80:8);
