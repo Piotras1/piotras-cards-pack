@@ -19,7 +19,7 @@ Clean and modern progress bars for any numerical sensor.
 - **Value on bar** — value displayed directly inside the bar
 
 **Key features:**
-- Fully customizable color gradient (up to 13 colors per bar)
+- Fully customizable color gradient (up to 6 colors per bar)
 - Independent min/max range per device — perfect for mixing units (%, W, °C, kWh)
 - Scale labels below each bar with adjustable precision
 - Click any row to open the entity detail in Home Assistant
