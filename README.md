@@ -39,8 +39,8 @@ adjust fonts and value colors without touching YAML.
 The ultimate monitoring hub for your home climate and energy usage.
 
 <p align="left">
-  <img src="img/piotras-climate-info-1.jpg" style="width:40%; margin-right: 2%;">
-  <img src="img/piotras-climate-info-2.jpg" style="width:40%;">
+  <img src="img/piotras-climate-info-1.jpg" style="width:43%; margin-right: 2%;">
+  <img src="img/piotras-climate-info-2.jpg" style="width:37%;">
 </p>
 
 <details>
