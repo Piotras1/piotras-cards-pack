@@ -38,7 +38,7 @@ adjust fonts and value colors without touching YAML.
 ### 🌡️ Piotras Climate Info
 The ultimate monitoring hub for your home climate and energy usage.
 
-<p align="center">
+<p align="left">
   <img src="img/piotras-climate-info-1.jpg" style="width:40%; margin-right: 2%;">
   <img src="img/piotras-climate-info-2.jpg" style="width:40%;">
 </p>
@@ -127,7 +127,7 @@ https://github.com/Piotras1/piotras-cards-pack
 4. Go to **Settings → Dashboards → Resources**.
 5. Click **Add Resource** and enter:
 ```
-/local/piotras-cards/piotras-loader-cards.js?v=1.0.4
+/local/piotras-cards/piotras-loader-cards.js?v=1.0.5
 ```
 - Resource type: **JavaScript Module**
 6. Hard reload your browser (Ctrl+F5).
