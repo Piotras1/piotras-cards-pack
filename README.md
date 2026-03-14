@@ -38,7 +38,10 @@ adjust fonts and value colors without touching YAML.
 ### 🌡️ Piotras Climate Info
 The ultimate monitoring hub for your home climate and energy usage.
 
-![Value Climate Info_1](img/piotras-climate-info-1.jpg) 
+<p align="center">
+  <img src="img/piotras-climate-info-1.jpg" style="width:40%; margin-right: 2%;">
+  <img src="img/piotras-climate-info-2.jpg" style="width:40%;">
+</p>
 
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
