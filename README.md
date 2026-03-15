@@ -71,7 +71,7 @@ and energy sensors without touching YAML.
 
 An interactive donut chart for energy distribution analysis — available in two layouts with full visual editor.
 
-![Energy Donut Layout 1](img/piotras-energy-donut-layout-1.jpg) ![Energy Donut Layout 2](img/piotras-energy-donut-layout-2.jpg)
+![Energy Donut Layout 1](img/piotras-energy-donut-layout-1.jpg) 
 
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
