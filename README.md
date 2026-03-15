@@ -7,7 +7,7 @@ Collection of high-performance Home Assistant cards with advanced visual editors
 ### 📊 Piotras Value Bar
 Clean and modern progress bars for any numerical sensor.
 
-![Value Bar Preview_2](img/piotras-value-bar-2.jpg) ![Value Bar Preview_1](img/piotras-value-bar-1.jpg)
+![Value Bar Preview](img/piotras-value-bar.jpg)
 
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
