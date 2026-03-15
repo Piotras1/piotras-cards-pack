@@ -128,7 +128,7 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 /local/piotras-cards/piotras-loader-cards.js?v=1.0.5
 ```
 - Resource type: **JavaScript Module**
-6. Hard reload your browser (Ctrl+F5).
+6. Hard reload your browser (Ctrl+Shift+R).
 
   
 ---
