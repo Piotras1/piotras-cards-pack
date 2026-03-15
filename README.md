@@ -1,4 +1,4 @@
-# Piotras Cards Pack
+# Piotras Cards Pack Release v1.0.5
 
 Collection of high-performance Home Assistant cards with advanced visual editors for Energy, Climate, and Data visualization.
 
