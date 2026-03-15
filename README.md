@@ -107,16 +107,13 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 ## ⚙️ Installation
 
 ### Method 1: Via HACS (Recommended)
-1. Open HACS in Home Assistant.
-2. Go to **Frontend**.
-3. Click the three dots in the top right and select **Custom repositories**.
-4. Add the following URL and select **Dashboard** as the category:
+1. Click the button below to automatically add the repository to your HACS:
 <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=Piotras1&repository=piotras-cards-pack&category=plugin">
     <img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open your Home Assistant instance"></a>
 
-
-6. Click **Add**, find **Piotras Cards Pack** and click **Download**.
-7. Hard reload your browser (Ctrl+Shift+R).
+2. Click Add in the pop-up window.
+3. Once the repository page opens, click Download.
+4. After downloading, a Hard reload of your browser
 
 ### Method 2: Manual Installation
 1. Download this repository as a ZIP file and extract it.
