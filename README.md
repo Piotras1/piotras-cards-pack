@@ -63,6 +63,8 @@ The ultimate monitoring hub for your home climate and energy usage.
 color zones with color pickers and range sliders, set icons, entities
 and energy sensors without touching YAML.
 
+👉 **[View the Full Guide Climate Info](https://github.com/Piotras1/piotras-cards-pack/discussions/4)**
+
 </details>
 
 ---
