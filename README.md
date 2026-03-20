@@ -39,8 +39,6 @@ An interactive donut chart for energy distribution and percentage-based monitori
 
 </details>
 
-👉 **[View the Full Guide Energy Donut](https://github.com/Piotras1/piotras-cards-pack/discussions/2)**
-
 ---
 
 ### 🌡️ Piotras Climate Info
@@ -75,8 +73,6 @@ The ultimate monitoring hub for your home climate and energy usage.
 
 </details>
 
-👉 **[View the Full Guide Climate Info](https://github.com/Piotras1/piotras-cards-pack/discussions/4)**
-
 ---
 
 ### 📊 Piotras Value Bar
@@ -107,8 +103,6 @@ adjust fonts and value colors without touching YAML.
 👉 **[View the Full Guide Value Bar](https://github.com/Piotras1/piotras-cards-pack/discussions/3)**
 
 </details>
-
-👉 **[View the Full Guide Value Bar](https://github.com/Piotras1/piotras-cards-pack/discussions/3)**
 
 ---
 
