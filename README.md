@@ -4,6 +4,81 @@ Collection of high-performance Home Assistant cards with advanced visual editors
 
 ## Cards included:
 
+### 🍩 Piotras Energy Donut
+
+An interactive donut chart for energy distribution and percentage-based monitoring — available in three layouts with full visual editor.
+
+![Energy Donut Layout 1](img/piotras-energy-donut-layout-1.jpg)
+
+<details>
+<summary><b>🔍 More info - click to expand</b></summary>
+<br>
+
+**3 layout modes:**
+- **Layout 1: Callout Lines** — donut with outward callout lines connecting segments to labels, automatic collision avoidance so labels never overlap
+- **Layout 2: Legend** — donut with a two-sided legend distributed symmetrically left and right of the chart
+- **Layout 3: Percentage Gauge** — dedicated single-value ring for percentage-based sensors (battery, humidity, tank level). Always-on display with optional comfort zone ring
+
+**Key features:**
+- **Interactive Focus Mode** — click any segment or legend item to isolate it; selected segment enlarges while others fade, showing value and percentage in the chart center
+- **Auto-reset timer** — configurable `detail_timeout` returns the chart to overview automatically after a click
+- **Callout lines toggle** — `show_lines: false` hides lines for a clean look; clicking any segment reveals its line on demand
+- **Configurable display limit** — show only the top N devices; the rest are automatically grouped into the "Others" segment
+- **Comfort Zone Ring** — Layout 3 supports an optional outer ring divided into three threshold-based color zones (e.g. cold / comfort / hot)
+- **20-color custom palette** — every segment color individually adjustable via `c1`–`c20`
+- **Fully responsive** — SVG scales cleanly to any card width with proportional ring thickness, radius and font sizes
+
+**Visual Editor:** Full GUI — manage devices, tweak colors and dimensions without YAML.
+
+**Also works great for:**
+- Live power (W) and current (A) monitoring
+- Battery and percentage-based sensors (`layout: 3`)
+- Custom units and precision via `po_opisie` and `po_przecinku`
+
+👉 **[View the Full Guide Energy Donut](https://github.com/Piotras1/piotras-cards-pack/discussions/2)**
+
+</details>
+
+👉 **[View the Full Guide Energy Donut](https://github.com/Piotras1/piotras-cards-pack/discussions/2)**
+
+---
+
+### 🌡️ Piotras Climate Info
+The ultimate monitoring hub for your home climate and energy usage.
+
+![Piotras Climate Info Presentation](img/piotras-climate-info.jpg)
+
+<details>
+<summary><b>🔍 More info - click to expand</b></summary>
+<br>
+
+**4 layout modes:**
+- **Layout 1: Compact Row** — icon | name | values arranged in a single horizontal row, perfect for sidebars
+- **Layout 2: Vertical Stack** — adapts automatically based on icon size: horizontal (icon left, data right) for `icon_size > 30`, vertical (name → icon → data) for smaller icons
+- **Layout 3: Multi-Column Grid** — each device in its own tile with name at top, icon centered, data below
+- **Layout 4: Energy & Percentage Monitor** — vertical gauge bar per device with a moving value pointer, optimized for Watts, Amps, Volts or any numeric sensor
+
+**Key features:**
+- Temperature, humidity and energy in one clean view per room
+- **Per-device temperature color zones** — set your own Cold / Comfort / Hot thresholds and colors independently for each device
+- **Fluid color interpolation** — `show_linear_color: true` enables smooth gradient transitions between color zones
+- **Smart icon animations** — optional bounce (cold) and shake (hot) animations activate outside threshold boundaries; enabled with `show_anim: true`
+- **Active indicator** — a badge dot shows when a device is currently running (`entity_praca`)
+- **Icon shape** — choose between circular (`form_icon: 1`) and rounded square (`form_icon: 2`) icon rings
+- **4 font styles** — default, small-caps, monospace, uppercase with letter spacing
+- SVG-based rendering — pixel-perfect on any screen and resolution
+- Fully responsive — automatically adapts to card width
+
+**Visual Editor:** Full GUI editor — add devices, configure temperature color zones with color pickers and range sliders, set icons, entities and sensors without touching YAML.
+
+👉 **[View the Full Guide Climate Info](https://github.com/Piotras1/piotras-cards-pack/discussions/4)**
+
+</details>
+
+👉 **[View the Full Guide Climate Info](https://github.com/Piotras1/piotras-cards-pack/discussions/4)**
+
+---
+
 ### 📊 Piotras Value Bar
 Clean and modern progress bars for any numerical sensor.
 
@@ -12,7 +87,7 @@ Clean and modern progress bars for any numerical sensor.
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
 <br>
-  
+
 **3 layout modes:**
 - **Standard** — device name on the left, bar in the middle, value on the right
 - **Compact** — bar below the name, ideal for narrow columns
@@ -33,76 +108,7 @@ adjust fonts and value colors without touching YAML.
 
 </details>
 
----
-
-### 🌡️ Piotras Climate Info
-The ultimate monitoring hub for your home climate and energy usage.
-
-![Piotras Climate Info Presentation](img/piotras-climate-info.jpg)
-
-<details>
-<summary><b>🔍 More info - click to expand</b></summary>
-<br>
-
-**3 layout modes:**
-- **Standard** — name | icon | values in a single row
-- **Reversed** — icon | name | values (great for icon-first dashboards)
-- **Name on top** — name above, values centered below (compact rooms overview)
-
-**Key features:**
-- Temperature, humidity and energy (kWh) in one clean row per room
-- **Per-device temperature color zones** — set your own Cold / Comfort / Hot
-  thresholds and colors independently for each room
-- **Multiple kWh sensors per room** — automatically summed into one total
-- **Active indicator** — a glowing dot shows when a device is currently running
-- **Per-device HA icon size** — scale each icon independently
-- SVG-based rendering — pixel-perfect on any screen and resolution
-- Responsive — automatically adapts to card width
-
-**Visual Editor:** Full GUI editor — add devices, configure temperature
-color zones with color pickers and range sliders, set icons, entities
-and energy sensors without touching YAML.
-
-👉 **[View the Full Guide Climate Info](https://github.com/Piotras1/piotras-cards-pack/discussions/4)**
-
-</details>
-
----
-
-### 🍩 Piotras Energy Donut
-
-An interactive donut chart for energy distribution analysis — available in two layouts with full visual editor.
-
-![Energy Donut Layout 1](img/piotras-energy-donut-layout-1.jpg) 
-
-<details>
-<summary><b>🔍 More info - click to expand</b></summary>
-<br>
-  
-**Two layouts:**
-- **Layout 1** — donut with curved callout lines following the ring arc, automatic collision avoidance so labels never overlap
-- **Layout 2** — donut with left/right legend, auto-centered relative to the chart
-
-**Key features:**
-- **Interactive Focus Mode** — click any segment or legend item to isolate it; selected device enlarges while others fade, showing kWh value and percentage in the chart center
-- **Smart callout lines** — `show_lines: false` hides lines for a clean look; clicking any label reveals its line on demand
-- **Configurable display limit** — show only the top N devices on the chart; the rest are automatically grouped into the "Others" segment. Set `limit: 4` to focus on the biggest consumers, or remove the limit to show everything
-- **Auto-reset timer** — configurable timeout returns to overview automatically after a click
-- **20-color custom palette** — every color individually adjustable
-- **Fully responsive** — SVG scales cleanly to any card width with proportional ring thickness, radius and font sizes
-
-**Visual Editor:** Full GUI — manage devices, tweak colors and dimensions without YAML.
-
-## Advanced Features & Visual Gallery
-
-This card supports more than just Energy! Check out our **pinned discussion** to see how to enable:
-  **Battery & Percentage Mode** (using `na_procenty: true`)
-  **Live Monitoring** for Watts (W) and Amperes (A)
-  **Custom Units & Precision** (using `po_opisie` and `po_przecinku`)
-
-👉 **[View the Full Guide Energy Donut](https://github.com/Piotras1/piotras-cards-pack/discussions/2)**
-
-</details>
+👉 **[View the Full Guide Value Bar](https://github.com/Piotras1/piotras-cards-pack/discussions/3)**
 
 ---
 
@@ -115,7 +121,7 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 
 2. Click Add in the pop-up window.
 3. Once the repository page opens, click Download.
-4. After downloading, a Hard reload of your browser
+4. After downloading, do a Hard reload of your browser.
 
 ### Method 2: Manual Installation
 1. Download this repository as a ZIP file and extract it.
@@ -129,6 +135,5 @@ This card supports more than just Energy! Check out our **pinned discussion** to
 - Resource type: **JavaScript Module**
 6. Hard reload your browser (Ctrl+Shift+R).
 
-  
 ---
 *Created by Piotras. Strictly engineered for reliability.*
