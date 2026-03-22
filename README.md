@@ -12,7 +12,8 @@ An interactive donut chart for energy distribution and percentage-based monitori
 
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
-
+<br>
+ 
 **3 layout modes:**
 - **Layout 1: Callout Lines** — donut with outward callout lines connecting segments to labels, automatic collision avoidance so labels never overlap
 - **Layout 2: Legend** — donut with a two-sided legend distributed symmetrically left and right of the chart
@@ -47,7 +48,8 @@ The ultimate monitoring hub for your home climate and energy usage.
 
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
-
+<br>
+ 
 **4 layout modes:**
 - **Layout 1: Compact Row** — icon | name | values arranged in a single horizontal row, perfect for sidebars
 - **Layout 2: Vertical Stack** — adapts automatically based on icon size: horizontal (icon left, data right) for `icon_size > 30`, vertical (name → icon → data) for smaller icons
@@ -74,34 +76,37 @@ The ultimate monitoring hub for your home climate and energy usage.
 ---
 
 ### 📊 Piotras Value Bar
-Clean and powerful progress bars for any numerical sensor — with color gradients, scale labels, alarm indicators and a built-in visual editor.
+
+Clean and modern sensor value bars with color gradients, scale labels, and alarm indicators.
+Designed for readability and flexibility — supports 3 bar orientations and 3 name/value layout modes.
+
 
 ![Piotras Value Bar](https://github.com/user-attachments/assets/690158d8-3335-4d7d-a6ba-c3a31d115060)
 
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
+<br>
 
-**3 bar orientations (layout):**
-- **Layout 1: Horizontal Stepped** — horizontal bars with sharp color segment edges, name on the left, value on the right
-- **Layout 2: Horizontal Smooth** — horizontal bars with smooth gradient interpolation between colors, visually softer transitions
-- **Layout 3: Vertical Bars** — side-by-side vertical bars sharing a common baseline and left-side scale column with horizontal grid lines
+**3 bar orientations (`layout`):**
+- **Horizontal stepped** — sharp color zones, ideal for battery levels and percentages
+- **Horizontal smooth** — gradual color transition, ideal for temperature and continuous metrics
+- **Vertical** — side-by-side columns with a shared scale, great for comparing multiple sensors at a glance
 
-**3 name/value placement modes (card_layout):**
-- **Card Layout 1** — classic row: name | bar | value with configurable column widths
-- **Card Layout 2** — name and value above the bar on a single line, position swappable left/right
-- **Card Layout 3** — value rendered directly inside the bar, works best with a taller bar
+**3 name/value placement modes (`card_layout`):**
+- **Classic row** — device name on the left, bar in the center, value on the right
+- **Name + value above bar** — compact layout ideal for narrow columns
+- **Value inside bar** — value rendered directly on the bar, works best with a taller bar
 
 **Key features:**
-- **13-color custom palette** — every color individually adjustable via `c1`–`c13`, referenced by index in each device's `colors` field
-- **Independent min/max per device** — mix any units on the same card (%, °C, W, kWh, V)
-- **Two indicator modes** — `show_indicator: true` renders full gradient with a white pin marker; `false` switches to progress fill mode with a dimmed track
-- **Scale labels** — configurable density (2 to 13 tick points for horizontal, 2 to 7 grid lines for vertical)
-- **Alarm indicators** — animated arrows appear when a value crosses `alarm_min` or `alarm_max` thresholds, individually set per device
-- **4 font styles** — default, small-caps, monospace, uppercase with letter spacing
-- **Fully responsive** — automatically scales to any card width using ResizeObserver
-- Click any bar to open the entity detail in Home Assistant
+- Fully customizable color gradient — up to 13 colors per bar, stepped or smooth
+- Independent min/max range per device — mix units freely (%, °C, W, kWh)
+- Scale labels below each bar (horizontal) or on a shared left column (vertical)
+- Alarm indicators — animated arrows appear when a value crosses `alarm_min` or `alarm_max`
+- White pin marker shows current value position, or switch to progress fill mode
+- Click any row to open the entity detail in Home Assistant
+- Responsive — automatically adapts to card width
 
-**Visual Editor:** Full GUI editor — 8 tabs covering layout, bar dimensions, fonts, labels, alarms, appearance, palette and per-device settings. Add devices, set color gradients and alarm thresholds without touching YAML.
+**Visual Editor:** Full GUI editor — add devices, set color gradients, adjust fonts and layout without touching YAML.
 
 👉 **[View the Full Guide Value Bar](https://github.com/Piotras1/piotras-cards-pack/discussions/3)**
 
