@@ -1,4 +1,4 @@
-# Piotras Cards Pack Release v1.0.5
+# Piotras Cards Pack Release v1.0.6
 
 Collection of high-performance Home Assistant cards with advanced visual editors for Energy, Climate, and Data visualization.
 
@@ -8,11 +8,10 @@ Collection of high-performance Home Assistant cards with advanced visual editors
 
 An interactive donut chart for energy distribution and percentage-based monitoring — available in three layouts with full visual editor.
 
-![Energy Donut Layout 1](img/piotras-energy-donut-layout-1.jpg)
+![Piotras Energy Donut](https://github.com/user-attachments/assets/f6bbc9f6-cb0c-4e51-b293-e5678e2d1efe)
 
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
-<br>
 
 **3 layout modes:**
 - **Layout 1: Callout Lines** — donut with outward callout lines connecting segments to labels, automatic collision avoidance so labels never overlap
@@ -44,11 +43,10 @@ An interactive donut chart for energy distribution and percentage-based monitori
 ### 🌡️ Piotras Climate Info
 The ultimate monitoring hub for your home climate and energy usage.
 
-![Piotras Climate Info Presentation](img/piotras-climate-info.jpg)
+![Piotras Climate Info](https://github.com/user-attachments/assets/f88da135-38f5-4ee4-96ee-959b12ce03c3)
 
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
-<br>
 
 **4 layout modes:**
 - **Layout 1: Compact Row** — icon | name | values arranged in a single horizontal row, perfect for sidebars
@@ -78,11 +76,10 @@ The ultimate monitoring hub for your home climate and energy usage.
 ### 📊 Piotras Value Bar
 Clean and powerful progress bars for any numerical sensor — with color gradients, scale labels, alarm indicators and a built-in visual editor.
 
-![Value Bar Preview](img/piotras-value-bar.jpg)
+![Piotras Value Bar](https://github.com/user-attachments/assets/690158d8-3335-4d7d-a6ba-c3a31d115060)
 
 <details>
 <summary><b>🔍 More info - click to expand</b></summary>
-<br>
 
 **3 bar orientations (layout):**
 - **Layout 1: Horizontal Stepped** — horizontal bars with sharp color segment edges, name on the left, value on the right
