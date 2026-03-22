@@ -76,7 +76,7 @@ The ultimate monitoring hub for your home climate and energy usage.
 ---
 
 ### 📊 Piotras Value Bar
-Clean and modern progress bars for any numerical sensor.
+Clean and powerful progress bars for any numerical sensor — with color gradients, scale labels, alarm indicators and a built-in visual editor.
 
 ![Value Bar Preview](img/piotras-value-bar.jpg)
 
@@ -84,21 +84,27 @@ Clean and modern progress bars for any numerical sensor.
 <summary><b>🔍 More info - click to expand</b></summary>
 <br>
 
-**3 layout modes:**
-- **Standard** — device name on the left, bar in the middle, value on the right
-- **Compact** — bar below the name, ideal for narrow columns
-- **Value on bar** — value displayed directly inside the bar
+**3 bar orientations (layout):**
+- **Layout 1: Horizontal Stepped** — horizontal bars with sharp color segment edges, name on the left, value on the right
+- **Layout 2: Horizontal Smooth** — horizontal bars with smooth gradient interpolation between colors, visually softer transitions
+- **Layout 3: Vertical Bars** — side-by-side vertical bars sharing a common baseline and left-side scale column with horizontal grid lines
+
+**3 name/value placement modes (card_layout):**
+- **Card Layout 1** — classic row: name | bar | value with configurable column widths
+- **Card Layout 2** — name and value above the bar on a single line, position swappable left/right
+- **Card Layout 3** — value rendered directly inside the bar, works best with a taller bar
 
 **Key features:**
-- Fully customizable color gradient (up to 6 colors per bar)
-- Independent min/max range per device — perfect for mixing units (%, W, °C, kWh)
-- Scale labels below each bar with adjustable precision
-- Click any row to open the entity detail in Home Assistant
-- SVG-based rendering — sharp on any screen resolution
-- Responsive — adapts automatically to card width
+- **13-color custom palette** — every color individually adjustable via `c1`–`c13`, referenced by index in each device's `colors` field
+- **Independent min/max per device** — mix any units on the same card (%, °C, W, kWh, V)
+- **Two indicator modes** — `show_indicator: true` renders full gradient with a white pin marker; `false` switches to progress fill mode with a dimmed track
+- **Scale labels** — configurable density (2 to 13 tick points for horizontal, 2 to 7 grid lines for vertical)
+- **Alarm indicators** — animated arrows appear when a value crosses `alarm_min` or `alarm_max` thresholds, individually set per device
+- **4 font styles** — default, small-caps, monospace, uppercase with letter spacing
+- **Fully responsive** — automatically scales to any card width using ResizeObserver
+- Click any bar to open the entity detail in Home Assistant
 
-**Visual Editor:** Full GUI editor — add devices, set color gradients,
-adjust fonts and value colors without touching YAML.
+**Visual Editor:** Full GUI editor — 8 tabs covering layout, bar dimensions, fonts, labels, alarms, appearance, palette and per-device settings. Add devices, set color gradients and alarm thresholds without touching YAML.
 
 👉 **[View the Full Guide Value Bar](https://github.com/Piotras1/piotras-cards-pack/discussions/3)**
 
