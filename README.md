@@ -132,7 +132,7 @@ Designed for readability and flexibility — supports 3 bar orientations and 3 n
 4. Go to **Settings → Dashboards → Resources**.
 5. Click **Add Resource** and enter:
 ```
-/local/piotras-cards/piotras-loader-cards.js?v=1.0.5
+/local/piotras-cards/piotras-loader-cards.js?v=1.0.6
 ```
 - Resource type: **JavaScript Module**
 6. Hard reload your browser (Ctrl+Shift+R).
