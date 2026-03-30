@@ -28,7 +28,7 @@
 ### Description
 - **A highly advanced Home Assistant button card designed with a unique feedback system that visually confirms every service call with an animated countdown.** 
 - **It features an innovative 9-Grid layout for flexible icon and label positioning, alongside smart sliders that automatically detect brightness, color temperature, or volume levels.**  
-- **Everything is easily managed through a built-in visual editor, completely eliminating the need for manual YAML configuration.**
+- **Everything is easily managed through a built-in visual editor, removing the need for any manual YAML configuration**
 
 ---
 
@@ -43,7 +43,7 @@
 
 ### Description
 - **A versatile Home Assistant card designed for comprehensive climate monitoring and energy tracking with 4 distinct, responsive layouts.**
-- **It features a smart animation system with anti-flicker thresholds and fluid color interpolation that visually reflects temperature or power states.**
+- **It features a smart animation system with anti-flicker thresholds and fluid color interpolation that visually reflects temperature or power levels.**
 - **Equipped with a specialized Energy & Percentage mode (Layout 4) featuring a dynamic vertical gauge for precise electrical measurement tracking.**
 
 ---
@@ -75,9 +75,9 @@
 
 ### Description
 - **Clean and modern sensor bars featuring 3 orientations—including a unique vertical comparison mode with a shared scale and horizontal scrolling support.**
-- **It offers 3 flexible layout modes to place names and values either beside, above, or directly inside the bars, ensuring perfect fit for any dashboard column.**
-- **Advanced visualization features include smooth or stepped gradients with up to 13 colors, animated alarm indicators for threshold breaches, and a full visual editor.**
+- **It offers 3 flexible layout modes to place names and values either beside, above, or directly inside the bars, ensuring a perfect fit for any dashboard column.**
+- **Advanced visualization features include smooth or stepped gradients with up to 13 colors, animated alert indicators when thresholds are exceeded, and a full visual editor.**
 
 ---
 
-*Created by Piotras. Strictly engineered for reliability.*
+*Crafted by Piotras with care for reliability.*
