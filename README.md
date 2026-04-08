@@ -33,7 +33,7 @@
 ---
 
 # 🌡️ Piotras Climate Info
-![Piotras Climate Info](https://github.com/user-attachments/assets/bcf84482-5fc6-4504-9844-aecde4351f64)
+![Piotras Climate Info](https://github.com/user-attachments/assets/0031f242-2283-445a-8df9-36bfabaef7d7)
 
 | Documentation | Installation |
 | :--- | :--- |
