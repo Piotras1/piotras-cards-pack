@@ -65,7 +65,7 @@
 ---
 
 # 📊 Piotras Value Bar
-![Piotras Value Bar](https://github.com/user-attachments/assets/690158d8-3335-4d7d-a6ba-c3a31d115060)
+![Karta Piotras Value Bar](https://github.com/user-attachments/assets/c29e9f24-ec35-4e2b-85fb-37f22a48e81a)
 
 | Documentation | Installation |
 | :--- | :--- |
