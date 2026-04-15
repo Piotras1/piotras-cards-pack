@@ -49,7 +49,7 @@
 ---
 
 # 🍩 Piotras Energy Donut
-![Piotras Energy Donut](https://github.com/user-attachments/assets/f6bbc9f6-cb0c-4e51-b293-e5678e2d1efe)
+![Piotras Energy Donut](https://github.com/user-attachments/assets/f2e486d2-80ae-485d-8ce0-5084de4f2ad9)
 
 | Documentation | Installation |
 | :--- | :--- |
