@@ -94,9 +94,10 @@
         /* ── Category grid ── */
         #home-view {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 20px;
         }
+
         .category-card {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -106,58 +107,64 @@
             overflow: hidden;
             position: relative;
         }
-        .category-card::after {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, var(--accent), var(--accent2));
-            opacity: 0; transition: opacity 0.2s;
-        }
         .category-card:hover {
             border-color: var(--accent);
             transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(240,160,64,0.12);
+            box-shadow: 0 10px 28px rgba(240,160,64,0.14);
         }
-        .category-card:hover::after { opacity: 1; }
 
+        /* Name bar on top */
         .cat-header {
-            padding: 14px 16px 10px;
+            padding: 13px 16px;
             display: flex; align-items: center; gap: 8px;
+            background: var(--surface);
+            position: relative; z-index: 2;
+            border-bottom: 1px solid var(--border);
         }
-        .cat-icon { font-size: 18px; line-height: 1; }
         .cat-name {
             font-family: 'Rajdhani', sans-serif;
-            font-size: 18px; font-weight: 700; flex: 1;
+            font-size: 17px; font-weight: 700;
+            flex: 1;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
-        /* 2×2 preview */
-        .cat-preview {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 100px 100px;
-            gap: 2px;
-            background: var(--border);
-        }
-        .cat-preview img {
-            width: 100%; height: 100%;
-            object-fit: cover; display: block;
+        /* Demo image area */
+        .cat-demo {
+            height: 160px;
             background: var(--surface2);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
         }
-        .preview-placeholder {
-            background: var(--surface2);
+        .cat-demo.no-demo {
             display: flex; align-items: center; justify-content: center;
-            color: var(--border); font-size: 20px;
+            color: var(--border); font-size: 36px;
+        }
+        /* Gradient overlay so footer is readable */
+        .cat-demo::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+        }
+        .category-card:hover .cat-demo::after {
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(240,160,64,0.08) 100%);
         }
 
+        /* Footer bar */
         .cat-footer {
             padding: 10px 16px;
             display: flex; align-items: center; justify-content: space-between;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
         }
         .cat-count {
             font-size: 12px; color: var(--text-muted);
             background: var(--surface2); padding: 3px 10px;
             border-radius: 20px; border: 1px solid var(--border);
         }
-        .cat-arrow { color: var(--accent); font-size: 18px; }
+        .cat-arrow { color: var(--accent); font-size: 18px; transition: transform 0.2s; }
+        .category-card:hover .cat-arrow { transform: translateX(4px); }
 
         /* ── Gallery view ── */
         #gallery-view { display: none; }
@@ -179,9 +186,7 @@
             font-family: 'Rajdhani', sans-serif;
             font-size: 26px; font-weight: 700;
         }
-        .gallery-subdesc {
-            font-size: 13px; color: var(--text-muted); margin-left: auto;
-        }
+        .gallery-subdesc { font-size: 13px; color: var(--text-muted); margin-left: auto; }
 
         /* ── Image grid ── */
         .image-grid {
@@ -349,14 +354,6 @@
     const API_BASE   = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents`;
     const RAW_BASE   = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main`;
 
-    // Metadata — key must match exact folder name in repo
-    const CATEGORY_META = {
-        'piotras-agd':     { icon: '🏠', name: 'Appliances & Electronics', desc: 'Home appliances with warm glow (ON) and neutral dark (OFF) versions.' },
-        'piotras-lamps':   { icon: '💡', name: 'Lights & Lamps',           desc: 'Lamp and lighting images. Warm lit (ON) and dark (OFF) versions.' },
-        'piotras-persons': { icon: '👤', name: 'Persons',                  desc: 'Avatar images for person & device_tracker entities. Colored (ON) and grayscale (OFF).' },
-        'piotras-rooms':   { icon: '🛋️', name: 'Rooms',                   desc: 'Room backgrounds — lit (ON) and dark (OFF). Perfect for climate and scene cards.' },
-    };
-
     // ── Theme ──
     const themeBtn = document.getElementById('theme-toggle');
     if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');
@@ -409,84 +406,79 @@
         sessionStorage.setItem(key, JSON.stringify(data));
         return data;
     }
+
     function isImage(name) { return /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(name); }
+
+    // Find demo file: looks for folderName_demo.* in the img/ root listing
+    function findDemoUrl(rootFiles, folderName) {
+        const demoFile = rootFiles.find(f =>
+            f.type === 'file' &&
+            isImage(f.name) &&
+            f.name.toLowerCase().startsWith(folderName.toLowerCase() + '_demo.')
+        );
+        return demoFile ? `${RAW_BASE}/${BASE_PATH}/${demoFile.name}` : null;
+    }
 
     // ── Load home ──
     async function loadCategories() {
         homeView.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="spinner"></div><p>Loading categories...</p></div>';
         try {
-            const items = await apiFetch(BASE_PATH);
-            const folders = items.filter(i => i.type === 'dir');
+            const rootItems = await apiFetch(BASE_PATH);
+            const folders = rootItems.filter(i => i.type === 'dir');
+
             if (!folders.length) {
                 homeView.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="state-icon">📂</div><p>No categories found in <code>img/</code>.</p></div>';
                 return;
             }
+
             homeView.innerHTML = '';
             folders.forEach(folder => {
-                const meta = CATEGORY_META[folder.name] || {
-                    icon: '📁',
-                    name: folder.name,
-                    desc: 'Browse images in this category.'
-                };
+                const demoUrl = findDemoUrl(rootItems, folder.name);
 
                 const card = document.createElement('div');
                 card.className = 'category-card';
+
+                // Demo area
+                let demoHtml;
+                if (demoUrl) {
+                    demoHtml = `<div class="cat-demo" style="background-image:url('${demoUrl}')"></div>`;
+                } else {
+                    demoHtml = `<div class="cat-demo no-demo">🖼️</div>`;
+                }
+
                 card.innerHTML = `
                     <div class="cat-header">
-                        <span class="cat-icon">${meta.icon}</span>
-                        <span class="cat-name">${meta.name}</span>
+                        <span class="cat-name">${folder.name}</span>
                     </div>
-                    <div class="cat-preview" id="preview-${folder.name}">
-                        <div class="preview-placeholder">·</div>
-                        <div class="preview-placeholder">·</div>
-                        <div class="preview-placeholder">·</div>
-                        <div class="preview-placeholder">·</div>
-                    </div>
+                    ${demoHtml}
                     <div class="cat-footer">
                         <span class="cat-count" id="count-${folder.name}">Loading...</span>
                         <span class="cat-arrow">→</span>
                     </div>
                 `;
-                card.addEventListener('click', () => openCategory(folder.name, meta));
+                card.addEventListener('click', () => openCategory(folder.name));
                 homeView.appendChild(card);
 
-                // Load preview images + count
+                // Load image count async
                 apiFetch(`${BASE_PATH}/${folder.name}`).then(files => {
                     const imgs = files.filter(f => isImage(f.name));
                     const countEl = document.getElementById(`count-${folder.name}`);
                     if (countEl) countEl.textContent = `${imgs.length} image${imgs.length !== 1 ? 's' : ''}`;
-
-                    const previewEl = document.getElementById(`preview-${folder.name}`);
-                    if (!previewEl) return;
-                    previewEl.innerHTML = '';
-                    for (let i = 0; i < 4; i++) {
-                        if (imgs[i]) {
-                            const img = document.createElement('img');
-                            img.src = `${RAW_BASE}/${BASE_PATH}/${folder.name}/${imgs[i].name}`;
-                            img.alt = imgs[i].name;
-                            img.loading = 'lazy';
-                            previewEl.appendChild(img);
-                        } else {
-                            const ph = document.createElement('div');
-                            ph.className = 'preview-placeholder';
-                            ph.textContent = '·';
-                            previewEl.appendChild(ph);
-                        }
-                    }
                 }).catch(() => {
                     const countEl = document.getElementById(`count-${folder.name}`);
                     if (countEl) countEl.textContent = '—';
                 });
             });
+
         } catch (err) {
             homeView.innerHTML = `<div class="state-box" style="grid-column:1/-1"><div class="state-icon">⚠️</div><p>Failed to load.<br><small>${err.message}</small></p></div>`;
         }
     }
 
     // ── Open category ──
-    async function openCategory(folderName, meta) {
-        galleryTitle.textContent = `${meta.icon} ${meta.name}`;
-        gallerySubdesc.textContent = meta.desc;
+    async function openCategory(folderName) {
+        galleryTitle.textContent = folderName;
+        gallerySubdesc.textContent = '';
         imageGrid.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="spinner"></div><p>Loading images...</p></div>';
         homeView.style.display = 'none';
         galleryView.style.display = 'block';
@@ -495,10 +487,12 @@
         try {
             const files = await apiFetch(`${BASE_PATH}/${folderName}`);
             const images = files.filter(f => isImage(f.name));
+
             if (!images.length) {
                 imageGrid.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="state-icon">🖼️</div><p>No images in this category yet.</p></div>';
                 return;
             }
+
             imageGrid.innerHTML = '';
             images.forEach((file, idx) => {
                 const rawUrl = `${RAW_BASE}/${BASE_PATH}/${folderName}/${file.name}`;
@@ -530,6 +524,7 @@
                 });
                 imageGrid.appendChild(item);
             });
+
         } catch (err) {
             imageGrid.innerHTML = `<div class="state-box" style="grid-column:1/-1"><div class="state-icon">⚠️</div><p>Failed to load.<br><small>${err.message}</small></p></div>`;
         }
