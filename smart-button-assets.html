@@ -18,18 +18,15 @@
             --success: #3ecf6e;
             --radius: 12px;
         }
-
         [data-theme="light"] {
             --bg: #f0f0f5;
             --surface: #ffffff;
             --surface2: #f8f8fc;
             --border: #e0e0ea;
             --text: #1a1a2e;
-            --text-muted: #6666880;
+            --text-muted: #666688;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
             font-family: 'Inter', sans-serif;
             background: var(--bg);
@@ -42,247 +39,156 @@
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
-            padding: 20px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 16px 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 200;
             backdrop-filter: blur(12px);
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .logo { display: flex; align-items: center; gap: 12px; }
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 36px; height: 36px;
             background: linear-gradient(135deg, var(--accent), var(--accent2));
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             font-size: 18px;
         }
-
-        .logo-text {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .logo-text span {
-            color: var(--accent);
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
+        .logo-text { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; }
+        .logo-text span { color: var(--accent); }
+        .header-right { display: flex; align-items: center; gap: 10px; }
         .theme-btn {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 8px 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-family: 'Inter', sans-serif;
+            background: var(--surface2); border: 1px solid var(--border);
+            color: var(--text); padding: 7px 13px; border-radius: 8px;
+            cursor: pointer; font-size: 13px; font-family: 'Inter', sans-serif;
             transition: all 0.2s;
         }
         .theme-btn:hover { background: var(--border); }
-
         .github-btn {
-            background: var(--accent);
-            border: none;
-            color: #000;
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            text-decoration: none;
-            transition: opacity 0.2s;
+            background: var(--accent); border: none; color: #000;
+            padding: 7px 15px; border-radius: 8px; cursor: pointer;
+            font-size: 13px; font-weight: 600; font-family: 'Inter', sans-serif;
+            text-decoration: none; transition: opacity 0.2s;
         }
         .github-btn:hover { opacity: 0.85; }
 
         /* ── Hero ── */
         .hero {
-            padding: 60px 32px 40px;
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
+            padding: 52px 32px 36px;
+            text-align: center; max-width: 680px; margin: 0 auto;
         }
-
         .hero h1 {
             font-family: 'Rajdhani', sans-serif;
-            font-size: 42px;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 16px;
+            font-size: 40px; font-weight: 700; line-height: 1.1; margin-bottom: 14px;
         }
-
         .hero h1 span { color: var(--accent); }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 8px;
-        }
-
+        .hero p { color: var(--text-muted); font-size: 14px; line-height: 1.7; }
         .hero-hint {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 6px 14px;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-top: 16px;
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 20px; padding: 5px 14px;
+            font-size: 12px; color: var(--text-muted); margin-top: 16px;
         }
 
-        /* ── Main layout ── */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 32px 60px;
-        }
+        /* ── Main ── */
+        main { max-width: 1200px; margin: 0 auto; padding: 0 32px 60px; }
 
-        /* ── Category grid (home view) ── */
+        /* ── Category grid ── */
         #home-view {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
         }
-
         .category-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 28px 24px;
             cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            position: relative;
+            transition: all 0.22s;
             overflow: hidden;
+            position: relative;
         }
-
-        .category-card::before {
+        .category-card::after {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
             background: linear-gradient(90deg, var(--accent), var(--accent2));
-            opacity: 0;
-            transition: opacity 0.2s;
+            opacity: 0; transition: opacity 0.2s;
         }
-
         .category-card:hover {
             border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(240,160,64,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(240,160,64,0.12);
         }
+        .category-card:hover::after { opacity: 1; }
 
-        .category-card:hover::before { opacity: 1; }
-
-        .category-card .cat-icon {
-            font-size: 32px;
-            line-height: 1;
+        .cat-header {
+            padding: 14px 16px 10px;
+            display: flex; align-items: center; gap: 8px;
         }
-
-        .category-card .cat-name {
+        .cat-icon { font-size: 18px; line-height: 1; }
+        .cat-name {
             font-family: 'Rajdhani', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 18px; font-weight: 700; flex: 1;
         }
 
-        .category-card .cat-desc {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.5;
+        /* 2×2 preview */
+        .cat-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 100px 100px;
+            gap: 2px;
+            background: var(--border);
         }
-
-        .category-card .cat-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 8px;
-        }
-
-        .cat-count {
-            font-size: 12px;
-            color: var(--text-muted);
+        .cat-preview img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
             background: var(--surface2);
-            padding: 3px 10px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
+        }
+        .preview-placeholder {
+            background: var(--surface2);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--border); font-size: 20px;
         }
 
-        .cat-arrow {
-            color: var(--accent);
-            font-size: 18px;
+        .cat-footer {
+            padding: 10px 16px;
+            display: flex; align-items: center; justify-content: space-between;
         }
+        .cat-count {
+            font-size: 12px; color: var(--text-muted);
+            background: var(--surface2); padding: 3px 10px;
+            border-radius: 20px; border: 1px solid var(--border);
+        }
+        .cat-arrow { color: var(--accent); font-size: 18px; }
 
         /* ── Gallery view ── */
         #gallery-view { display: none; }
-
         .gallery-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
-            padding-bottom: 20px;
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 28px; padding-bottom: 18px;
             border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
         }
-
         .back-btn {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 8px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.2s;
+            background: var(--surface); border: 1px solid var(--border);
+            color: var(--text); padding: 7px 15px; border-radius: 8px;
+            cursor: pointer; font-size: 13px; font-family: 'Inter', sans-serif;
+            display: flex; align-items: center; gap: 6px;
+            transition: all 0.2s; white-space: nowrap;
         }
         .back-btn:hover { border-color: var(--accent); color: var(--accent); }
-
         .gallery-title {
             font-family: 'Rajdhani', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 26px; font-weight: 700;
         }
-
-        .gallery-desc {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-left: auto;
+        .gallery-subdesc {
+            font-size: 13px; color: var(--text-muted); margin-left: auto;
         }
 
         /* ── Image grid ── */
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+            gap: 14px;
         }
-
         .image-item {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -292,102 +198,103 @@
             animation: fadeIn 0.3s ease forwards;
             opacity: 0;
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
-
-        .image-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(240,160,64,0.1);
-        }
-
-        .image-item img {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            display: block;
+        .image-item:hover { border-color: var(--accent); box-shadow: 0 6px 20px rgba(240,160,64,0.1); }
+        .img-thumb {
+            width: 100%; aspect-ratio: 1;
+            object-fit: cover; display: block;
             background: var(--surface2);
+            cursor: zoom-in;
+            transition: transform 0.2s;
         }
-
-        .image-item .img-footer {
-            padding: 10px;
+        .image-item:hover .img-thumb { transform: scale(1.04); }
+        .img-footer { padding: 8px 10px; }
+        .img-name {
+            font-size: 11px; color: var(--text-muted);
+            margin-bottom: 7px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-
-        .image-item .img-name {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
         .download-btn {
-            width: 100%;
-            background: var(--success);
-            color: #000;
-            border: none;
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            transition: opacity 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
+            width: 100%; background: var(--success); color: #000;
+            border: none; padding: 7px; border-radius: 6px;
+            font-size: 12px; font-weight: 600; font-family: 'Inter', sans-serif;
+            cursor: pointer; transition: opacity 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 4px;
         }
         .download-btn:hover { opacity: 0.85; }
         .download-btn.loading { opacity: 0.6; pointer-events: none; }
 
-        /* ── Loading / Error / Empty ── */
-        .state-box {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-muted);
+        /* ── Lightbox ── */
+        #lightbox {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.93);
+            z-index: 999;
+            align-items: center; justify-content: center;
+            cursor: zoom-out;
+        }
+        #lightbox.open { display: flex; animation: lbIn 0.18s ease; }
+        @keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
+        #lightbox img {
+            max-width: 88vw; max-height: 86vh;
+            object-fit: contain; border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            cursor: default;
+            animation: lbImg 0.2s ease;
+        }
+        @keyframes lbImg {
+            from { transform: scale(0.94); opacity: 0; }
+            to   { transform: scale(1);    opacity: 1; }
+        }
+        #lightbox-close {
+            position: fixed; top: 20px; right: 24px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; font-size: 20px;
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.2s;
+        }
+        #lightbox-close:hover { background: rgba(255,255,255,0.22); }
+        #lightbox-name {
+            position: fixed; bottom: 22px; left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.65);
+            color: rgba(255,255,255,0.65);
+            font-size: 12px; padding: 4px 14px; border-radius: 20px;
+            white-space: nowrap;
         }
 
-        .state-box .state-icon { font-size: 40px; margin-bottom: 16px; }
+        /* ── States ── */
+        .state-box { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+        .state-box .state-icon { font-size: 36px; margin-bottom: 14px; }
         .state-box p { font-size: 14px; }
-
         .spinner {
-            width: 32px;
-            height: 32px;
-            border: 3px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 16px;
+            width: 30px; height: 30px;
+            border: 3px solid var(--border); border-top-color: var(--accent);
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+            margin: 0 auto 14px;
         }
-
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ── Footer ── */
         footer {
-            text-align: center;
-            padding: 24px;
+            text-align: center; padding: 22px;
             border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 12px;
+            color: var(--text-muted); font-size: 12px;
         }
-
         footer a { color: var(--accent); text-decoration: none; }
 
-        /* ── Responsive ── */
         @media (max-width: 600px) {
-            header { padding: 16px 20px; }
-            main { padding: 0 16px 40px; }
-            .hero { padding: 40px 16px 32px; }
+            header { padding: 14px 16px; }
+            main { padding: 0 14px 40px; }
+            .hero { padding: 36px 16px 28px; }
             .hero h1 { font-size: 30px; }
             #home-view { grid-template-columns: 1fr; }
-            .image-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-            .gallery-header { flex-wrap: wrap; }
-            .gallery-desc { display: none; }
+            .image-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .gallery-subdesc { display: none; }
         }
     </style>
 </head>
@@ -407,142 +314,135 @@
 <div class="hero">
     <h1>Asset <span>Gallery</span></h1>
     <p>Ready-to-use background images for Piotras Smart Button cards.<br>
-    Each image is optimized as <code>background_image_on</code> or <code>background_image_off</code>.</p>
-    <div class="hero-hint">💡 Choose a category to browse and download images</div>
+    Use as <code>background_image_on</code> or <code>background_image_off</code> in your YAML.</p>
+    <div class="hero-hint">💡 Choose a category to browse and download</div>
 </div>
 
 <main>
-    <!-- Home: category list -->
     <div id="home-view"></div>
-
-    <!-- Gallery: image grid for selected category -->
     <div id="gallery-view">
         <div class="gallery-header">
             <button class="back-btn" id="back-btn">← Back</button>
-            <div>
-                <div class="gallery-title" id="gallery-title"></div>
-            </div>
-            <div class="gallery-desc" id="gallery-desc"></div>
+            <div class="gallery-title" id="gallery-title"></div>
+            <div class="gallery-subdesc" id="gallery-subdesc"></div>
         </div>
         <div id="image-grid" class="image-grid"></div>
     </div>
 </main>
 
+<div id="lightbox">
+    <button id="lightbox-close">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div id="lightbox-name"></div>
+</div>
+
 <footer>
     Images by <a href="https://github.com/Piotras1" target="_blank">Piotras</a> &nbsp;·&nbsp;
-    <a href="https://github.com/Piotras1/piotras-smart-button" target="_blank">Smart Button repo</a> &nbsp;·&nbsp;
-    <a href="https://github.com/Piotras1/piotras-cards-pack" target="_blank">Cards Pack repo</a>
+    <a href="https://github.com/Piotras1/piotras-smart-button" target="_blank">Smart Button</a> &nbsp;·&nbsp;
+    <a href="https://github.com/Piotras1/piotras-cards-pack" target="_blank">Cards Pack</a>
 </footer>
 
 <script>
-    // ── Config ──
     const REPO_OWNER = 'Piotras1';
     const REPO_NAME  = 'piotras-cards-pack';
-    const BASE_PATH  = 'img'; // root folder in repo
+    const BASE_PATH  = 'img';
     const API_BASE   = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents`;
     const RAW_BASE   = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main`;
 
-    // Category metadata — key = folder name in repo
+    // Metadata — key must match exact folder name in repo
     const CATEGORY_META = {
-        'persons': {
-            icon: '👤',
-            name: 'Persons',
-            desc: 'Avatar images for person & device_tracker entities. Colored (ON) and grayscale (OFF) versions.'
-        },
-        'agd': {
-            icon: '🏠',
-            name: 'Appliances & Electronics',
-            desc: 'Home appliances with warm glow (ON) and neutral dark (OFF) versions.'
-        },
-        'lights': {
-            icon: '💡',
-            name: 'Lights & Lamps',
-            desc: 'Lamp and lighting images. Warm lit (ON) and dark (OFF) versions.'
-        },
-        'rooms': {
-            icon: '🛋️',
-            name: 'Rooms',
-            desc: 'Room backgrounds — lit (ON) and dark (OFF). Perfect for climate and scene cards.'
-        },
+        'piotras-agd':     { icon: '🏠', name: 'Appliances & Electronics', desc: 'Home appliances with warm glow (ON) and neutral dark (OFF) versions.' },
+        'piotras-lamps':   { icon: '💡', name: 'Lights & Lamps',           desc: 'Lamp and lighting images. Warm lit (ON) and dark (OFF) versions.' },
+        'piotras-persons': { icon: '👤', name: 'Persons',                  desc: 'Avatar images for person & device_tracker entities. Colored (ON) and grayscale (OFF).' },
+        'piotras-rooms':   { icon: '🛋️', name: 'Rooms',                   desc: 'Room backgrounds — lit (ON) and dark (OFF). Perfect for climate and scene cards.' },
     };
 
     // ── Theme ──
     const themeBtn = document.getElementById('theme-toggle');
-    if (localStorage.getItem('theme') === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }
+    if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');
     themeBtn.addEventListener('click', () => {
-        const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-        document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        document.documentElement.setAttribute('data-theme', isLight ? 'dark' : 'light');
+        localStorage.setItem('theme', isLight ? 'dark' : 'light');
     });
 
     // ── Views ──
-    const homeView    = document.getElementById('home-view');
-    const galleryView = document.getElementById('gallery-view');
-    const backBtn     = document.getElementById('back-btn');
-    const galleryTitle = document.getElementById('gallery-title');
-    const galleryDesc  = document.getElementById('gallery-desc');
-    const imageGrid    = document.getElementById('image-grid');
+    const homeView       = document.getElementById('home-view');
+    const galleryView    = document.getElementById('gallery-view');
+    const imageGrid      = document.getElementById('image-grid');
+    const galleryTitle   = document.getElementById('gallery-title');
+    const gallerySubdesc = document.getElementById('gallery-subdesc');
 
-    function showHome() {
+    document.getElementById('back-btn').addEventListener('click', () => {
         homeView.style.display = 'grid';
         galleryView.style.display = 'none';
+    });
+
+    // ── Lightbox ──
+    const lightbox     = document.getElementById('lightbox');
+    const lightboxImg  = document.getElementById('lightbox-img');
+    const lightboxName = document.getElementById('lightbox-name');
+
+    function openLightbox(url, name) {
+        lightboxImg.src = url;
+        lightboxName.textContent = name;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
-
-    function showGallery() {
-        homeView.style.display = 'none';
-        galleryView.style.display = 'block';
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
     }
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
-    backBtn.addEventListener('click', showHome);
-
-    // ── API helpers ──
+    // ── API with session cache ──
     async function apiFetch(path) {
-        const cacheKey = 'gh_cache_' + path;
-        const cached = sessionStorage.getItem(cacheKey);
+        const key = 'gh_' + path;
+        const cached = sessionStorage.getItem(key);
         if (cached) return JSON.parse(cached);
-
         const res = await fetch(`${API_BASE}/${path}`);
-        if (!res.ok) throw new Error(`API error ${res.status}`);
+        if (!res.ok) throw new Error(`GitHub API ${res.status}`);
         const data = await res.json();
-        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+        sessionStorage.setItem(key, JSON.stringify(data));
         return data;
     }
+    function isImage(name) { return /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(name); }
 
-    function isImage(name) {
-        return /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(name);
-    }
-
-    // ── Load categories ──
+    // ── Load home ──
     async function loadCategories() {
-        homeView.innerHTML = '<div class="state-box"><div class="spinner"></div><p>Loading categories...</p></div>';
-
+        homeView.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="spinner"></div><p>Loading categories...</p></div>';
         try {
             const items = await apiFetch(BASE_PATH);
             const folders = items.filter(i => i.type === 'dir');
-
             if (!folders.length) {
-                homeView.innerHTML = '<div class="state-box"><div class="state-icon">📂</div><p>No categories found in <code>img/</code> folder.</p></div>';
+                homeView.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="state-icon">📂</div><p>No categories found in <code>img/</code>.</p></div>';
                 return;
             }
-
             homeView.innerHTML = '';
-            folders.forEach((folder, idx) => {
+            folders.forEach(folder => {
                 const meta = CATEGORY_META[folder.name] || {
                     icon: '📁',
-                    name: folder.name.charAt(0).toUpperCase() + folder.name.slice(1),
+                    name: folder.name,
                     desc: 'Browse images in this category.'
                 };
 
                 const card = document.createElement('div');
                 card.className = 'category-card';
-                card.style.animationDelay = (idx * 0.05) + 's';
                 card.innerHTML = `
-                    <div class="cat-icon">${meta.icon}</div>
-                    <div class="cat-name">${meta.name}</div>
-                    <div class="cat-desc">${meta.desc}</div>
-                    <div class="cat-meta">
+                    <div class="cat-header">
+                        <span class="cat-icon">${meta.icon}</span>
+                        <span class="cat-name">${meta.name}</span>
+                    </div>
+                    <div class="cat-preview" id="preview-${folder.name}">
+                        <div class="preview-placeholder">·</div>
+                        <div class="preview-placeholder">·</div>
+                        <div class="preview-placeholder">·</div>
+                        <div class="preview-placeholder">·</div>
+                    </div>
+                    <div class="cat-footer">
                         <span class="cat-count" id="count-${folder.name}">Loading...</span>
                         <span class="cat-arrow">→</span>
                     </div>
@@ -550,62 +450,72 @@
                 card.addEventListener('click', () => openCategory(folder.name, meta));
                 homeView.appendChild(card);
 
-                // Load count async
-                apiFetch(`${BASE_PATH}/${folder.name}`)
-                    .then(files => {
-                        const imgs = files.filter(f => isImage(f.name));
-                        const el = document.getElementById(`count-${folder.name}`);
-                        if (el) el.textContent = `${imgs.length} image${imgs.length !== 1 ? 's' : ''}`;
-                    })
-                    .catch(() => {
-                        const el = document.getElementById(`count-${folder.name}`);
-                        if (el) el.textContent = '—';
-                    });
-            });
+                // Load preview images + count
+                apiFetch(`${BASE_PATH}/${folder.name}`).then(files => {
+                    const imgs = files.filter(f => isImage(f.name));
+                    const countEl = document.getElementById(`count-${folder.name}`);
+                    if (countEl) countEl.textContent = `${imgs.length} image${imgs.length !== 1 ? 's' : ''}`;
 
+                    const previewEl = document.getElementById(`preview-${folder.name}`);
+                    if (!previewEl) return;
+                    previewEl.innerHTML = '';
+                    for (let i = 0; i < 4; i++) {
+                        if (imgs[i]) {
+                            const img = document.createElement('img');
+                            img.src = `${RAW_BASE}/${BASE_PATH}/${folder.name}/${imgs[i].name}`;
+                            img.alt = imgs[i].name;
+                            img.loading = 'lazy';
+                            previewEl.appendChild(img);
+                        } else {
+                            const ph = document.createElement('div');
+                            ph.className = 'preview-placeholder';
+                            ph.textContent = '·';
+                            previewEl.appendChild(ph);
+                        }
+                    }
+                }).catch(() => {
+                    const countEl = document.getElementById(`count-${folder.name}`);
+                    if (countEl) countEl.textContent = '—';
+                });
+            });
         } catch (err) {
-            homeView.innerHTML = `<div class="state-box"><div class="state-icon">⚠️</div><p>Failed to load categories.<br><small>${err.message}</small></p></div>`;
+            homeView.innerHTML = `<div class="state-box" style="grid-column:1/-1"><div class="state-icon">⚠️</div><p>Failed to load.<br><small>${err.message}</small></p></div>`;
         }
     }
 
     // ── Open category ──
     async function openCategory(folderName, meta) {
         galleryTitle.textContent = `${meta.icon} ${meta.name}`;
-        galleryDesc.textContent  = meta.desc;
+        gallerySubdesc.textContent = meta.desc;
         imageGrid.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="spinner"></div><p>Loading images...</p></div>';
-        showGallery();
+        homeView.style.display = 'none';
+        galleryView.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
         try {
             const files = await apiFetch(`${BASE_PATH}/${folderName}`);
             const images = files.filter(f => isImage(f.name));
-
             if (!images.length) {
-                imageGrid.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="state-icon">🖼️</div><p>No images found in this category yet.</p></div>';
+                imageGrid.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="state-icon">🖼️</div><p>No images in this category yet.</p></div>';
                 return;
             }
-
             imageGrid.innerHTML = '';
             images.forEach((file, idx) => {
                 const rawUrl = `${RAW_BASE}/${BASE_PATH}/${folderName}/${file.name}`;
                 const item = document.createElement('div');
                 item.className = 'image-item';
-                item.style.animationDelay = (idx * 0.04) + 's';
+                item.style.animationDelay = (idx * 0.035) + 's';
                 item.innerHTML = `
-                    <img src="${rawUrl}" alt="${file.name}" loading="lazy">
+                    <img class="img-thumb" src="${rawUrl}" alt="${file.name}" loading="lazy">
                     <div class="img-footer">
                         <div class="img-name">${file.name}</div>
-                        <button class="download-btn" data-url="${rawUrl}" data-name="${file.name}">
-                            ⬇ Download
-                        </button>
+                        <button class="download-btn" data-url="${rawUrl}" data-name="${file.name}">⬇ Download</button>
                     </div>
                 `;
-                imageGrid.appendChild(item);
-            });
-
-            // Download handlers
-            imageGrid.querySelectorAll('.download-btn').forEach(btn => {
-                btn.addEventListener('click', async () => {
+                item.querySelector('.img-thumb').addEventListener('click', () => openLightbox(rawUrl, file.name));
+                item.querySelector('.download-btn').addEventListener('click', async e => {
+                    e.stopPropagation();
+                    const btn = e.currentTarget;
                     btn.classList.add('loading');
                     btn.textContent = 'Downloading...';
                     try {
@@ -613,25 +523,18 @@
                         const blob = await res.blob();
                         const url = URL.createObjectURL(blob);
                         const a = document.createElement('a');
-                        a.href = url;
-                        a.download = btn.dataset.name;
-                        a.click();
+                        a.href = url; a.download = btn.dataset.name; a.click();
                         URL.revokeObjectURL(url);
-                    } catch {
-                        alert('Download failed. Try again.');
-                    } finally {
-                        btn.classList.remove('loading');
-                        btn.innerHTML = '⬇ Download';
-                    }
+                    } catch { alert('Download failed. Try again.'); }
+                    finally { btn.classList.remove('loading'); btn.innerHTML = '⬇ Download'; }
                 });
+                imageGrid.appendChild(item);
             });
-
         } catch (err) {
-            imageGrid.innerHTML = `<div class="state-box" style="grid-column:1/-1"><div class="state-icon">⚠️</div><p>Failed to load images.<br><small>${err.message}</small></p></div>`;
+            imageGrid.innerHTML = `<div class="state-box" style="grid-column:1/-1"><div class="state-icon">⚠️</div><p>Failed to load.<br><small>${err.message}</small></p></div>`;
         }
     }
 
-    // ── Init ──
     loadCategories();
 </script>
 </body>
