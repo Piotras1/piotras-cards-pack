@@ -1,18 +1,4 @@
-# 🚦 Important: Transition to Individual Cards
-**`piotras-cards-pack` has become a Central Hub.** To provide faster updates and better performance, all cards have been moved to their own dedicated repositories.
-
-### 🛠️ Migration Guide
-- **Install individual cards** by clicking the **HACS Install** badges for the cards you use.
-- **Remove the old resource** `/local/piotras-cards/piotras-loader-cards.js` from your Dashboard Resources.
-- **Add new resources** (HACS does this automatically) for each individual card.
-- **No YAML changes needed!** Your current configurations remain fully compatible with the new individual loaders.
-
----
-
-### 📦 Why the change?
-- **Faster Updates:** Get fixes for specific cards immediately without a full pack update.
-- **Lightweight Dashboards:** Load only the code for the cards you actually display.
-- **Improved Stability:** Independent versioning for each visualization type.
+## https://piotras1.github.io/piotras-cards-pack/smart-button-assets.html
 
 ---
 
