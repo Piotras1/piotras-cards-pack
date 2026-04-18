@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piotras Smart Button — Asset Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0d0f;
+            --surface: #141418;
+            --surface2: #1c1c22;
+            --border: #2a2a35;
+            --accent: #f0a040;
+            --accent2: #ff6b35;
+            --text: #e8e8f0;
+            --text-muted: #7a7a90;
+            --success: #3ecf6e;
+            --radius: 12px;
+        }
+
+        [data-theme="light"] {
+            --bg: #f0f0f5;
+            --surface: #ffffff;
+            --surface2: #f8f8fc;
+            --border: #e0e0ea;
+            --text: #1a1a2e;
+            --text-muted: #6666880;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ── Header ── */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .logo-text {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-text span {
+            color: var(--accent);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .theme-btn {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+        .theme-btn:hover { background: var(--border); }
+
+        .github-btn {
+            background: var(--accent);
+            border: none;
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .github-btn:hover { opacity: 0.85; }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 60px 32px 40px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 span { color: var(--accent); }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .hero-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 16px;
+        }
+
+        /* ── Main layout ── */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px 60px;
+        }
+
+        /* ── Category grid (home view) ── */
+        #home-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .category-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(240,160,64,0.1);
+        }
+
+        .category-card:hover::before { opacity: 1; }
+
+        .category-card .cat-icon {
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .category-card .cat-name {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .category-card .cat-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .category-card .cat-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+
+        .cat-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            background: var(--surface2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .cat-arrow {
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        /* ── Gallery view ── */
+        #gallery-view { display: none; }
+
+        .gallery-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .back-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        .gallery-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .gallery-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        /* ── Image grid ── */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .image-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.2s;
+            animation: fadeIn 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .image-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(240,160,64,0.1);
+        }
+
+        .image-item img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+            background: var(--surface2);
+        }
+
+        .image-item .img-footer {
+            padding: 10px;
+        }
+
+        .image-item .img-name {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .download-btn {
+            width: 100%;
+            background: var(--success);
+            color: #000;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        .download-btn:hover { opacity: 0.85; }
+        .download-btn.loading { opacity: 0.6; pointer-events: none; }
+
+        /* ── Loading / Error / Empty ── */
+        .state-box {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .state-box .state-icon { font-size: 40px; margin-bottom: 16px; }
+        .state-box p { font-size: 14px; }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            header { padding: 16px 20px; }
+            main { padding: 0 16px 40px; }
+            .hero { padding: 40px 16px 32px; }
+            .hero h1 { font-size: 30px; }
+            #home-view { grid-template-columns: 1fr; }
+            .image-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .gallery-header { flex-wrap: wrap; }
+            .gallery-desc { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <div class="logo-icon">🔘</div>
+        <div class="logo-text">Piotras <span>Smart Button</span></div>
+    </div>
+    <div class="header-right">
+        <button class="theme-btn" id="theme-toggle">🌗 Theme</button>
+        <a class="github-btn" href="https://github.com/Piotras1/piotras-smart-button" target="_blank">⭐ GitHub</a>
+    </div>
+</header>
+
+<div class="hero">
+    <h1>Asset <span>Gallery</span></h1>
+    <p>Ready-to-use background images for Piotras Smart Button cards.<br>
+    Each image is optimized as <code>background_image_on</code> or <code>background_image_off</code>.</p>
+    <div class="hero-hint">💡 Choose a category to browse and download images</div>
+</div>
+
+<main>
+    <!-- Home: category list -->
+    <div id="home-view"></div>
+
+    <!-- Gallery: image grid for selected category -->
+    <div id="gallery-view">
+        <div class="gallery-header">
+            <button class="back-btn" id="back-btn">← Back</button>
+            <div>
+                <div class="gallery-title" id="gallery-title"></div>
+            </div>
+            <div class="gallery-desc" id="gallery-desc"></div>
+        </div>
+        <div id="image-grid" class="image-grid"></div>
+    </div>
+</main>
+
+<footer>
+    Images by <a href="https://github.com/Piotras1" target="_blank">Piotras</a> &nbsp;·&nbsp;
+    <a href="https://github.com/Piotras1/piotras-smart-button" target="_blank">Smart Button repo</a> &nbsp;·&nbsp;
+    <a href="https://github.com/Piotras1/piotras-cards-pack" target="_blank">Cards Pack repo</a>
+</footer>
+
+<script>
+    // ── Config ──
+    const REPO_OWNER = 'Piotras1';
+    const REPO_NAME  = 'piotras-cards-pack';
+    const BASE_PATH  = 'img'; // root folder in repo
+    const API_BASE   = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents`;
+    const RAW_BASE   = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/main`;
+
+    // Category metadata — key = folder name in repo
+    const CATEGORY_META = {
+        'persons': {
+            icon: '👤',
+            name: 'Persons',
+            desc: 'Avatar images for person & device_tracker entities. Colored (ON) and grayscale (OFF) versions.'
+        },
+        'agd': {
+            icon: '🏠',
+            name: 'Appliances & Electronics',
+            desc: 'Home appliances with warm glow (ON) and neutral dark (OFF) versions.'
+        },
+        'lights': {
+            icon: '💡',
+            name: 'Lights & Lamps',
+            desc: 'Lamp and lighting images. Warm lit (ON) and dark (OFF) versions.'
+        },
+        'rooms': {
+            icon: '🛋️',
+            name: 'Rooms',
+            desc: 'Room backgrounds — lit (ON) and dark (OFF). Perfect for climate and scene cards.'
+        },
+    };
+
+    // ── Theme ──
+    const themeBtn = document.getElementById('theme-toggle');
+    if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+    themeBtn.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+        document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    });
+
+    // ── Views ──
+    const homeView    = document.getElementById('home-view');
+    const galleryView = document.getElementById('gallery-view');
+    const backBtn     = document.getElementById('back-btn');
+    const galleryTitle = document.getElementById('gallery-title');
+    const galleryDesc  = document.getElementById('gallery-desc');
+    const imageGrid    = document.getElementById('image-grid');
+
+    function showHome() {
+        homeView.style.display = 'grid';
+        galleryView.style.display = 'none';
+    }
+
+    function showGallery() {
+        homeView.style.display = 'none';
+        galleryView.style.display = 'block';
+    }
+
+    backBtn.addEventListener('click', showHome);
+
+    // ── API helpers ──
+    async function apiFetch(path) {
+        const cacheKey = 'gh_cache_' + path;
+        const cached = sessionStorage.getItem(cacheKey);
+        if (cached) return JSON.parse(cached);
+
+        const res = await fetch(`${API_BASE}/${path}`);
+        if (!res.ok) throw new Error(`API error ${res.status}`);
+        const data = await res.json();
+        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+        return data;
+    }
+
+    function isImage(name) {
+        return /\.(png|jpg|jpeg|gif|webp|svg)$/i.test(name);
+    }
+
+    // ── Load categories ──
+    async function loadCategories() {
+        homeView.innerHTML = '<div class="state-box"><div class="spinner"></div><p>Loading categories...</p></div>';
+
+        try {
+            const items = await apiFetch(BASE_PATH);
+            const folders = items.filter(i => i.type === 'dir');
+
+            if (!folders.length) {
+                homeView.innerHTML = '<div class="state-box"><div class="state-icon">📂</div><p>No categories found in <code>img/</code> folder.</p></div>';
+                return;
+            }
+
+            homeView.innerHTML = '';
+            folders.forEach((folder, idx) => {
+                const meta = CATEGORY_META[folder.name] || {
+                    icon: '📁',
+                    name: folder.name.charAt(0).toUpperCase() + folder.name.slice(1),
+                    desc: 'Browse images in this category.'
+                };
+
+                const card = document.createElement('div');
+                card.className = 'category-card';
+                card.style.animationDelay = (idx * 0.05) + 's';
+                card.innerHTML = `
+                    <div class="cat-icon">${meta.icon}</div>
+                    <div class="cat-name">${meta.name}</div>
+                    <div class="cat-desc">${meta.desc}</div>
+                    <div class="cat-meta">
+                        <span class="cat-count" id="count-${folder.name}">Loading...</span>
+                        <span class="cat-arrow">→</span>
+                    </div>
+                `;
+                card.addEventListener('click', () => openCategory(folder.name, meta));
+                homeView.appendChild(card);
+
+                // Load count async
+                apiFetch(`${BASE_PATH}/${folder.name}`)
+                    .then(files => {
+                        const imgs = files.filter(f => isImage(f.name));
+                        const el = document.getElementById(`count-${folder.name}`);
+                        if (el) el.textContent = `${imgs.length} image${imgs.length !== 1 ? 's' : ''}`;
+                    })
+                    .catch(() => {
+                        const el = document.getElementById(`count-${folder.name}`);
+                        if (el) el.textContent = '—';
+                    });
+            });
+
+        } catch (err) {
+            homeView.innerHTML = `<div class="state-box"><div class="state-icon">⚠️</div><p>Failed to load categories.<br><small>${err.message}</small></p></div>`;
+        }
+    }
+
+    // ── Open category ──
+    async function openCategory(folderName, meta) {
+        galleryTitle.textContent = `${meta.icon} ${meta.name}`;
+        galleryDesc.textContent  = meta.desc;
+        imageGrid.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="spinner"></div><p>Loading images...</p></div>';
+        showGallery();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        try {
+            const files = await apiFetch(`${BASE_PATH}/${folderName}`);
+            const images = files.filter(f => isImage(f.name));
+
+            if (!images.length) {
+                imageGrid.innerHTML = '<div class="state-box" style="grid-column:1/-1"><div class="state-icon">🖼️</div><p>No images found in this category yet.</p></div>';
+                return;
+            }
+
+            imageGrid.innerHTML = '';
+            images.forEach((file, idx) => {
+                const rawUrl = `${RAW_BASE}/${BASE_PATH}/${folderName}/${file.name}`;
+                const item = document.createElement('div');
+                item.className = 'image-item';
+                item.style.animationDelay = (idx * 0.04) + 's';
+                item.innerHTML = `
+                    <img src="${rawUrl}" alt="${file.name}" loading="lazy">
+                    <div class="img-footer">
+                        <div class="img-name">${file.name}</div>
+                        <button class="download-btn" data-url="${rawUrl}" data-name="${file.name}">
+                            ⬇ Download
+                        </button>
+                    </div>
+                `;
+                imageGrid.appendChild(item);
+            });
+
+            // Download handlers
+            imageGrid.querySelectorAll('.download-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    btn.classList.add('loading');
+                    btn.textContent = 'Downloading...';
+                    try {
+                        const res = await fetch(btn.dataset.url);
+                        const blob = await res.blob();
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = btn.dataset.name;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                    } catch {
+                        alert('Download failed. Try again.');
+                    } finally {
+                        btn.classList.remove('loading');
+                        btn.innerHTML = '⬇ Download';
+                    }
+                });
+            });
+
+        } catch (err) {
+            imageGrid.innerHTML = `<div class="state-box" style="grid-column:1/-1"><div class="state-icon">⚠️</div><p>Failed to load images.<br><small>${err.message}</small></p></div>`;
+        }
+    }
+
+    // ── Init ──
+    loadCategories();
+</script>
+</body>
+</html>
