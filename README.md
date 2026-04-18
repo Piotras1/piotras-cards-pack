@@ -1,6 +1,4 @@
-## https://piotras1.github.io/piotras-cards-pack/smart-button-assets.html
-
----
+## All available Piotras cards
 
 # 🔘 Piotras Smart Button 
 ![Piotras Smart Button](https://github.com/user-attachments/assets/4e2c5722-03b1-4c0c-b7af-64c75d48812b)
@@ -10,6 +8,8 @@
 | [![Documentation](https://img.shields.io/badge/Documentation-View%20Guide-blue?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://github.com/Piotras1/piotras-smart-button) | [![HACS Installation](https://img.shields.io/badge/HACS-Install%20Repo-orange?style=for-the-badge&logo=home-assistant&logoColor=white)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Piotras1&repository=piotras-smart-button&category=plugin) |
 > [!TIP]
 > **Manual Installation:** Full step-by-step instructions are available in the **Documentation** link above.
+
+## [👁️ View Smart Button Assets](https://piotras1.github.io/piotras-cards-pack/smart-button-assets.html)
 
 ### Description
 - **A highly advanced Home Assistant button card designed with a unique feedback system that visually confirms every service call with an animated countdown.** 
