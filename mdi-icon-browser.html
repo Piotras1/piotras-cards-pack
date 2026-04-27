@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piotras MDI Icon Browser · Home Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #151820;
+    --surface2: #1c2030;
+    --border: #252a3a;
+    --accent: #4f8ef7;
+    --accent2: #7c5cbf;
+    --text: #e8eaf0;
+    --text2: #c0c5d1;
+    --text3: #8890a8;
+    --success: #43d97a;
+    --radius: 8px;
+    --header-bg: rgba(13,15,20,0.92);
+  }
+
+  :root.light {
+    --bg: #f0f2f7;
+    --surface: #ffffff;
+    --surface2: #e8ebf2;
+    --border: #d0d5e8;
+    --accent: #2563eb;
+    --accent2: #7c3abf;
+    --text: #1a1e2e;
+    --text2: #4a5270;
+    --text3: #8890a8;
+    --success: #16a34a;
+    --header-bg: rgba(240,242,247,0.92);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body, header, .cats-wrap, .icon-card, #search, .cat-pill, #toast {
+    transition: background 0.25s, background-color 0.25s, border-color 0.25s, color 0.25s;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--header-bg);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+  }
+
+  .header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .logo-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .logo-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--text3);
+    font-weight: 400;
+  }
+
+  .search-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+  }
+
+  .search-wrap i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text3);
+    font-size: 18px;
+    pointer-events: none;
+  }
+
+  #search {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 14px 10px 42px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #search:focus {
+    border-color: var(--accent);
+  }
+
+  #search::placeholder { color: var(--text3); }
+
+  .stats {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .stats span {
+    color: var(--accent);
+  }
+
+  /* Category pills */
+  .cats-wrap {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 73px;
+    z-index: 99;
+  }
+
+  .cats {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 24px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .cats::-webkit-scrollbar { display: none; }
+
+  .cat-pill {
+    flex-shrink: 0;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .cat-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .cat-pill.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .cat-pill i { font-size: 14px; }
+
+  /* Main */
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Grid */
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+  }
+
+  .icon-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 8px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .icon-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(79,142,247,0.08), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .icon-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(79,142,247,0.15);
+  }
+
+  .icon-card:hover::before { opacity: 1; }
+
+  .icon-card:active { transform: translateY(0); }
+
+  .icon-card i {
+    font-size: 38px;
+    color: var(--text2);
+    transition: color 0.15s;
+    line-height: 1;
+  }
+
+  .icon-card:hover i { color: var(--accent); }
+
+  .icon-name {
+    font-size: 10px;
+    color: var(--text3);
+    text-align: center;
+    word-break: break-all;
+    line-height: 1.3;
+    max-width: 100%;
+  }
+
+  /* Copy flash */
+  .icon-card.copied {
+    border-color: var(--success) !important;
+    background: rgba(67,217,122,0.08) !important;
+  }
+
+  .icon-card.copied i { color: var(--success) !important; }
+
+  .copy-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: var(--success);
+    color: #0d0f14;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.15s;
+    white-space: nowrap;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .icon-card.copied .copy-badge {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  /* Toast */
+  #toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--surface2);
+    border: 1px solid var(--success);
+    color: var(--success);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    z-index: 999;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  #toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Empty state */
+  #empty {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 80px 24px;
+    color: var(--text3);
+  }
+
+  #empty i { font-size: 48px; color: var(--text3); }
+  #empty p { font-size: 15px; }
+
+  /* Loading */
+  #loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 80px 24px;
+    color: var(--text3);
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Theme toggle button */
+  #theme-btn {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s;
+  }
+
+  #theme-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 8px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    padding: 24px;
+  }
+
+  .footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text2);
+  }
+
+  .footer-brand strong { color: var(--text); }
+
+  .footer-links {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 12px;
+    transition: all 0.15s;
+  }
+
+  .footer-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .footer-links a i { font-size: 14px; }
+
+  .footer-copy {
+    font-size: 11px;
+    color: var(--text3);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Pagination */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 0;
+    flex-wrap: wrap;
+  }
+
+  .page-btn {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 13px;
+    color: var(--text2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .page-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .page-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .page-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .page-info {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    padding: 0 8px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon"><i class="mdi mdi-home-assistant" style="color:#fff;font-size:20px"></i></div>
+      <div>
+        <div class="logo-text"><strong>Piotras</strong> MDI Icon Browser</div>
+        <div class="logo-sub">Home Assistant · materialdesignicons.com</div>
+      </div>
+    </div>
+    <div class="search-wrap">
+      <i class="mdi mdi-magnify"></i>
+      <input id="search" type="text" placeholder="Search icons — e.g. lightbulb, home, thermometer..." autocomplete="off" spellcheck="false">
+    </div>
+    <div class="stats">Showing <span id="count">—</span> icons</div>
+    <button id="theme-btn" title="Toggle theme" onclick="toggleTheme()">
+      <i class="mdi mdi-weather-night" id="theme-icon"></i>
+    </button>
+  </div>
+</header>
+
+<div class="cats-wrap">
+  <div class="cats" id="cats"></div>
+</div>
+
+<main>
+  <div id="loading">
+    <div class="spinner"></div>
+    <span>Loading icon library...</span>
+  </div>
+  <div id="empty">
+    <i class="mdi mdi-emoticon-confused-outline"></i>
+    <p>No icons found for "<span id="empty-query"></span>"</p>
+  </div>
+  <div id="pagination-top" class="pagination" style="display:none"></div>
+  <div id="grid"></div>
+  <div id="pagination-bottom" class="pagination" style="display:none"></div>
+</main>
+
+<div id="toast"><i class="mdi mdi-check-circle"></i> <span id="toast-text">Copied!</span></div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-icon" style="width:28px;height:28px;font-size:14px;"><i class="mdi mdi-home-assistant" style="color:#fff"></i></div>
+      <span><strong>Piotras</strong> MDI Icon Browser</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/Piotras1/piotras-smart-button" target="_blank">
+        <i class="mdi mdi-gesture-tap-button"></i> Smart Button
+      </a>
+      <a href="https://github.com/Piotras1/piotras-climate-info" target="_blank">
+        <i class="mdi mdi-thermometer"></i> Climate Info
+      </a>
+      <a href="https://github.com/Piotras1/piotras-energy-donut" target="_blank">
+        <i class="mdi mdi-chart-donut"></i> Energy Donut
+      </a>
+      <a href="https://github.com/Piotras1/piotras-value-bar" target="_blank">
+        <i class="mdi mdi-poll"></i> Value Bar
+      </a>
+      <a href="https://piotras1.github.io/piotras-cards-pack/smart-button-assets.html" target="_blank">
+        <i class="mdi mdi-image-multiple"></i> Asset Gallery
+      </a>
+      <a href="https://github.com/Piotras1" target="_blank">
+        <i class="mdi mdi-github"></i> GitHub
+      </a>
+    </div>
+    <div class="footer-copy">MIT License · Free to use and share</div>
+  </div>
+</footer>
+
+<script>
+// Categories with MDI prefix keywords
+const CATEGORIES = [
+  { id: 'all',        label: 'All Icons',     icon: 'mdi-apps',                   prefixes: [] },
+  { id: 'home',       label: 'Home & Rooms',  icon: 'mdi-home',                   prefixes: ['home','room','door','window','garage','sofa','bed','bath','kitchen','couch','chair','lamp','fan','air'] },
+  { id: 'energy',     label: 'Energy & Power',icon: 'mdi-lightning-bolt',          prefixes: ['lightning','power','battery','solar','electric','outlet','socket','plug','meter','watt','energy','fuel','gas','oil','propane'] },
+  { id: 'climate',    label: 'Climate',       icon: 'mdi-thermometer',             prefixes: ['thermometer','temp','heat','cool','air-condition','hvac','humidity','water-percent','snowflake','fire','radiator','boiler'] },
+  { id: 'security',   label: 'Security',      icon: 'mdi-shield-lock',             prefixes: ['shield','lock','alarm','camera','motion','sensor','security','key','door-lock','bell'] },
+  { id: 'media',      label: 'Media & Audio', icon: 'mdi-speaker',                 prefixes: ['speaker','music','volume','radio','tv','television','monitor','microphone','headphone','play','pause','media','cast','remote'] },
+  { id: 'lights',     label: 'Lights',        icon: 'mdi-lightbulb',               prefixes: ['lightbulb','light','bulb','led','ceiling','floor-lamp','desk-lamp','candle','string-lights','lamp'] },
+  { id: 'network',    label: 'Network & Smart',icon: 'mdi-wifi',                   prefixes: ['wifi','network','bluetooth','router','signal','antenna','hub','zigbee','zwave','matter','thread','cloud','server','database'] },
+  { id: 'weather',    label: 'Weather',       icon: 'mdi-weather-sunny',           prefixes: ['weather','cloud','sun','rain','snow','wind','storm','thunder','fog','moon','umbrella'] },
+  { id: 'person',     label: 'People',        icon: 'mdi-account',                 prefixes: ['account','person','human','people','family','baby','child','run','walk','bike'] },
+  { id: 'car',        label: 'Vehicles',      icon: 'mdi-car',                     prefixes: ['car','vehicle','truck','bus','bike','motorcycle','ev','charging','garage','parking'] },
+  { id: 'nature',     label: 'Nature',        icon: 'mdi-leaf',                    prefixes: ['leaf','tree','flower','plant','grass','nature','eco','recycle','earth'] },
+];
+
+let allIcons = [];
+let filtered = [];
+let activeCategory = 'all';
+let searchVal = '';
+let toastTimer;
+let currentPage = 0;
+const PAGE_SIZE = 100;
+
+// Fetch icon list from unpkg CDN (mdi meta)
+async function loadIcons() {
+  try {
+    const res = await fetch('https://unpkg.com/@mdi/svg@7.4.47/meta.json');
+    const meta = await res.json();
+    allIcons = meta.map(m => m.name);
+    init();
+  } catch(e) {
+    allIcons = getFallbackIcons();
+    init();
+  }
+}
+
+function init() {
+  buildCats();
+  applyFilters();
+  document.getElementById('loading').style.display = 'none';
+}
+
+function buildCats() {
+  const wrap = document.getElementById('cats');
+  CATEGORIES.forEach(cat => {
+    const pill = document.createElement('button');
+    pill.className = 'cat-pill' + (cat.id === 'all' ? ' active' : '');
+    pill.innerHTML = `<i class="mdi ${cat.icon}"></i>${cat.label}`;
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeCategory = cat.id;
+      currentPage = 0;
+      applyFilters();
+    });
+    wrap.appendChild(pill);
+  });
+}
+
+function applyFilters() {
+  const query = searchVal.toLowerCase().trim();
+  const cat = CATEGORIES.find(c => c.id === activeCategory);
+
+  filtered = allIcons.filter(name => {
+    const matchSearch = !query || name.includes(query);
+    const matchCat = cat.id === 'all' || cat.prefixes.some(p => name.startsWith(p) || name.includes(p));
+    return matchSearch && matchCat;
+  });
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  if (currentPage >= totalPages) currentPage = 0;
+
+  const start = currentPage * PAGE_SIZE;
+  const pageIcons = filtered.slice(start, start + PAGE_SIZE);
+
+  renderGrid(pageIcons);
+  renderPagination(totalPages);
+
+  const showing = Math.min(start + PAGE_SIZE, filtered.length) - start;
+  document.getElementById('count').textContent =
+    filtered.length > PAGE_SIZE
+      ? `${start + 1}–${start + showing} of ${filtered.length.toLocaleString()}`
+      : filtered.length.toLocaleString();
+
+  const empty = document.getElementById('empty');
+  const grid = document.getElementById('grid');
+  if (filtered.length === 0) {
+    empty.style.display = 'flex';
+    grid.style.display = 'none';
+    document.getElementById('empty-query').textContent = query;
+  } else {
+    empty.style.display = 'none';
+    grid.style.display = 'grid';
+  }
+}
+
+function renderPagination(totalPages) {
+  const topEl = document.getElementById('pagination-top');
+  const botEl = document.getElementById('pagination-bottom');
+
+  if (totalPages <= 1) {
+    topEl.style.display = 'none';
+    botEl.style.display = 'none';
+    return;
+  }
+
+  const html = buildPaginationHTML(totalPages);
+  topEl.innerHTML = html;
+  botEl.innerHTML = html;
+  topEl.style.display = 'flex';
+  botEl.style.display = 'flex';
+
+  [topEl, botEl].forEach(el => {
+    el.querySelectorAll('.page-btn[data-page]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const p = parseInt(btn.dataset.page);
+        if (p === currentPage) return;
+        currentPage = p;
+        applyFilters();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  });
+}
+
+function buildPaginationHTML(totalPages) {
+  const prev = currentPage > 0;
+  const next = currentPage < totalPages - 1;
+
+  let html = `<button class="page-btn" data-page="${currentPage - 1}" ${!prev ? 'disabled' : ''}>
+    <i class="mdi mdi-chevron-left"></i> Prev
+  </button>`;
+
+  // Page number buttons — show max 7
+  const range = getPageRange(currentPage, totalPages);
+  range.forEach(p => {
+    if (p === '...') {
+      html += `<span class="page-info">…</span>`;
+    } else {
+      html += `<button class="page-btn ${p === currentPage ? 'active' : ''}" data-page="${p}">${p + 1}</button>`;
+    }
+  });
+
+  html += `<button class="page-btn" data-page="${currentPage + 1}" ${!next ? 'disabled' : ''}>
+    Next <i class="mdi mdi-chevron-right"></i>
+  </button>`;
+
+  html += `<span class="page-info">Page ${currentPage + 1} of ${totalPages}</span>`;
+  return html;
+}
+
+function getPageRange(current, total) {
+  if (total <= 7) return Array.from({length: total}, (_, i) => i);
+  const range = [];
+  if (current <= 3) {
+    for (let i = 0; i < 5; i++) range.push(i);
+    range.push('...'); range.push(total - 1);
+  } else if (current >= total - 4) {
+    range.push(0); range.push('...');
+    for (let i = total - 5; i < total; i++) range.push(i);
+  } else {
+    range.push(0); range.push('...');
+    range.push(current - 1); range.push(current); range.push(current + 1);
+    range.push('...'); range.push(total - 1);
+  }
+  return range;
+}
+
+function renderGrid(icons) {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  const frag = document.createDocumentFragment();
+
+  icons.forEach(name => {
+    const card = document.createElement('div');
+    card.className = 'icon-card';
+    card.title = `mdi:${name}`;
+    card.innerHTML = `
+      <i class="mdi mdi-${name}"></i>
+      <div class="icon-name">${name}</div>
+      <div class="copy-badge">mdi:${name}</div>
+    `;
+    card.addEventListener('click', () => copyIcon(card, name));
+    frag.appendChild(card);
+  });
+
+  grid.appendChild(frag);
+}
+
+function copyIcon(card, name) {
+  const text = `mdi:${name}`;
+  navigator.clipboard.writeText(text).then(() => {
+    card.classList.add('copied');
+    setTimeout(() => card.classList.remove('copied'), 1000);
+    showToast(text);
+  });
+}
+
+function showToast(text) {
+  clearTimeout(toastTimer);
+  const toast = document.getElementById('toast');
+  document.getElementById('toast-text').textContent = `Copied: ${text}`;
+  toast.classList.add('show');
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Search debounce
+let searchTimer;
+document.getElementById('search').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchVal = e.target.value;
+  currentPage = 0;
+  searchTimer = setTimeout(applyFilters, 180);
+});
+
+// Fallback icons if CDN fails
+function getFallbackIcons() {
+  return ['lightbulb','lightbulb-outline','lightbulb-on','lightbulb-off','home','home-outline','home-assistant','thermometer','thermometer-high','thermometer-low','water-percent','fan','fan-off','air-conditioner','heat-pump','snowflake','fire','radiator','radiator-off','power','power-off','lightning-bolt','lightning-bolt-outline','battery','battery-charging','battery-10','battery-20','battery-30','battery-40','battery-50','battery-60','battery-70','battery-80','battery-90','battery-alert','solar-panel','solar-power','meter-electric','meter-gas','meter-water','water-boiler','water-boiler-off','water-pump','dishwasher','washing-machine','tumble-dryer','refrigerator','microwave','oven','toaster','coffee','kettle','lock','lock-open','door','door-open','door-closed','window-closed','window-open','garage','garage-open','garage-closed','alarm-light','alarm','alarm-off','alarm-check','shield','shield-lock','shield-off','camera','cctv','motion-sensor','bell','bell-off','speaker','speaker-off','volume-high','volume-medium','volume-low','volume-mute','music','radio','television','television-off','monitor','remote','cast','cast-connected','wifi','wifi-off','bluetooth','network','router-network','server','database','cloud','zigbee','weather-sunny','weather-cloudy','weather-rainy','weather-snowy','weather-windy','weather-night','weather-fog','account','account-multiple','human-greeting','run','walk','car','car-electric','car-connected','bike','motorcycle','bus','truck','leaf','tree','flower','recycle','earth','robot','cog','cog-outline','wrench','tools','hammer','screwdriver','magnet','chip','raspberry-pi','arduino','eye','eye-off','check','check-circle','close','close-circle','alert','alert-circle','information','help-circle','plus','minus','refresh','sync','download','upload','star','heart','flag','map-marker','compass','clock','timer','calendar','phone','email','message','web','link','qrcode'];
+}
+
+// Theme toggle
+function toggleTheme() {
+  const isLight = document.documentElement.classList.toggle('light');
+  document.getElementById('theme-icon').className = isLight ? 'mdi mdi-weather-sunny' : 'mdi mdi-weather-night';
+  localStorage.setItem('mdi-theme', isLight ? 'light' : 'dark');
+}
+
+// Restore saved theme
+(function() {
+  const saved = localStorage.getItem('mdi-theme');
+  if (saved === 'light') {
+    document.documentElement.classList.add('light');
+    document.addEventListener('DOMContentLoaded', () => {
+      const icon = document.getElementById('theme-icon');
+      if (icon) icon.className = 'mdi mdi-weather-sunny';
+    });
+  }
+})();
+
+loadIcons();
+</script>
+</body>
+</html>
