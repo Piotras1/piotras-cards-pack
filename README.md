@@ -40,6 +40,10 @@
 # 🍩 Piotras Energy Donut
 ![Piotras Energy Donut](https://github.com/user-attachments/assets/f2e486d2-80ae-485d-8ce0-5084de4f2ad9)
 
+![GitHub Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-energy-donut/total?style=flat-square&logo=github)
+![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-energy-donut?style=flat-square)
+![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
+
 | Documentation | Installation |
 | :--- | :--- |
 | [![Documentation](https://img.shields.io/badge/Documentation-View%20Guide-blue?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://github.com/Piotras1/piotras-energy-donut) | [![HACS Installation](https://img.shields.io/badge/HACS-Install%20Repo-orange?style=for-the-badge&logo=home-assistant&logoColor=white)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Piotras1&repository=piotras-energy-donut&category=plugin) |
