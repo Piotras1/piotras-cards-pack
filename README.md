@@ -3,6 +3,8 @@
 # 🔘 Piotras Smart Button 
 ![Piotras Smart Button](https://github.com/user-attachments/assets/4e2c5722-03b1-4c0c-b7af-64c75d48812b)
 
+[![Guides](https://img.shields.io/badge/Guides-Show%20%26%20Tell-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions/categories/show-and-tell)
+
 | Documentation | Installation |
 | :--- | :--- |
 | [![Documentation](https://img.shields.io/badge/Documentation-View%20Guide-blue?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://github.com/Piotras1/piotras-smart-button) | [![HACS Installation](https://img.shields.io/badge/HACS-Install%20Repo-orange?style=for-the-badge&logo=home-assistant&logoColor=white)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Piotras1&repository=piotras-smart-button&category=plugin) |
