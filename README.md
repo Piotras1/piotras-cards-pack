@@ -3,7 +3,16 @@
 # 🔘 Piotras Smart Button 
 ![Piotras Smart Button](https://github.com/user-attachments/assets/4e2c5722-03b1-4c0c-b7af-64c75d48812b)
 
+![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
+![GitHub Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-smart-button/total?style=flat-square&logo=github)
+![GitHub Stars](https://img.shields.io/github/stars/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=stars&color=brightgreen)
+![GitHub Issues](https://img.shields.io/github/issues/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=issues)
+![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-smart-button?style=flat-square)
+![GitHub Release Date](https://img.shields.io/github/release-date/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=released)
+
 [![Guides](https://img.shields.io/badge/Guides-Show%20%26%20Tell-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions/categories/show-and-tell)
+[![GitHub Discussions](https://img.shields.io/badge/Discussions-Join%20the%20community-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions)
+![GitHub Discussions](https://img.shields.io/github/discussions/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=discussions&color=blueviolet)
 
 | Documentation | Installation |
 | :--- | :--- |
@@ -77,6 +86,16 @@
 
 # 📊 Piotras Value Bar
 ![Karta Piotras Value Bar](https://github.com/user-attachments/assets/c29e9f24-ec35-4e2b-85fb-37f22a48e81a)
+
+![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
+![GitHub Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-value-bar/total?style=flat-square&logo=github)
+![GitHub Stars](https://img.shields.io/github/stars/Piotras1/piotras-value-bar?style=flat-square&logo=github&label=stars&color=brightgreen)
+![GitHub Issues](https://img.shields.io/github/issues/Piotras1/piotras-value-bar?style=flat-square&logo=github&label=issues)
+![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-value-bar?style=flat-square)
+![GitHub Release Date](https://img.shields.io/github/release-date/Piotras1/piotras-value-bar?style=flat-square&logo=github&label=released)
+
+[![GitHub Discussions](https://img.shields.io/badge/Discussions-Join%20the%20community-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-value-bar/discussions)
+![GitHub Discussions](https://img.shields.io/github/discussions/Piotras1/piotras-value-bar?style=flat-square&logo=github&label=discussions&color=blueviolet)
 
 | Documentation | Installation |
 | :--- | :--- |
