@@ -14,14 +14,14 @@
 [![GitHub Discussions](https://img.shields.io/badge/Discussions-Join%20the%20community-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions)
 ![GitHub Discussions](https://img.shields.io/github/discussions/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=discussions&color=blueviolet)
 
+[![Assets Gallery](https://img.shields.io/badge/Assets%20Gallery-Smart%20Button-00b4d8?style=flat-square&logo=materialdesign)](https://piotras1.github.io/piotras-cards-pack/smart-button-assets.html)
+[![MDI Icons](https://img.shields.io/badge/HA%20Icons-Search%20Gallery-00b4d8?style=flat-square&logo=materialdesign)](https://piotras1.github.io/piotras-cards-pack/mdi-icon-browser.html)
+
 | Documentation | Installation |
 | :--- | :--- |
 | [![Documentation](https://img.shields.io/badge/Documentation-View%20Guide-blue?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://github.com/Piotras1/piotras-smart-button) | [![HACS Installation](https://img.shields.io/badge/HACS-Install%20Repo-orange?style=for-the-badge&logo=home-assistant&logoColor=white)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Piotras1&repository=piotras-smart-button&category=plugin) |
 > [!TIP]
 > **Manual Installation:** Full step-by-step instructions are available in the **Documentation** link above.
-
-## [👁️ View Piotras Smart Button Assets](https://piotras1.github.io/piotras-cards-pack/smart-button-assets.html)
-## [👁️ View Piotras Icon Browser](https://piotras1.github.io/piotras-cards-pack/mdi-icon-browser.html)
 
 ### Description
 - **A highly advanced Home Assistant button card designed with a unique feedback system that visually confirms every service call with an animated countdown.** 
@@ -43,13 +43,13 @@
 [![GitHub Discussions](https://img.shields.io/badge/Discussions-Join%20the%20community-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-climate-info/discussions)
 ![GitHub Discussions](https://img.shields.io/github/discussions/Piotras1/piotras-climate-info?style=flat-square&logo=github&label=discussions&color=blueviolet)
 
+[![MDI Icons](https://img.shields.io/badge/HA%20Icons-Search%20Gallery-00b4d8?style=flat-square&logo=materialdesign)](https://piotras1.github.io/piotras-cards-pack/mdi-icon-browser.html)
+
 | Documentation | Installation |
 | :--- | :--- |
 | [![Documentation](https://img.shields.io/badge/Documentation-View%20Guide-blue?style=for-the-badge&logo=read-the-docs&logoColor=white)](https://github.com/Piotras1/piotras-climate-info) | [![HACS Installation](https://img.shields.io/badge/HACS-Install%20Repo-orange?style=for-the-badge&logo=home-assistant&logoColor=white)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Piotras1&repository=piotras-climate-info&category=plugin) |
 > [!TIP]
 > **Manual Installation:** Full step-by-step instructions are available in the **Documentation** link above.
-
-## [👁️ View Piotras Icon Browser](https://piotras1.github.io/piotras-cards-pack/mdi-icon-browser.html)
 
 ### Description
 - **A versatile Home Assistant card designed for comprehensive climate monitoring and energy tracking with 4 distinct, responsive layouts.**
