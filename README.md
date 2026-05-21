@@ -62,14 +62,11 @@
 ![Piotras Energy Donut](https://github.com/user-attachments/assets/f2e486d2-80ae-485d-8ce0-5084de4f2ad9)
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
-![GitHub Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-energy-donut/total?style=flat-square&logo=github)
+[![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-energy-donut/piotras-energy-donut-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)](https://github.com/Piotras1/piotras-energy-donut/releases)
 ![GitHub Stars](https://img.shields.io/github/stars/Piotras1/piotras-energy-donut?style=flat-square&logo=github&label=stars&color=brightgreen)
 ![GitHub Issues](https://img.shields.io/github/issues/Piotras1/piotras-energy-donut?style=flat-square&logo=github&label=issues)
-![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-energy-donut?style=flat-square)
+![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-energy-donut?style=flat-square&logo=github&label=released)
 ![GitHub Release Date](https://img.shields.io/github/release-date/Piotras1/piotras-energy-donut?style=flat-square&logo=github&label=released)
-
-[![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-energy-donut/piotras-energy-donut.js?logo=homeassistant&color=41BDF5)](https://github.com/Piotras1/piotras-energy-donut/releases)
-
 
 [![GitHub Discussions](https://img.shields.io/badge/Discussions-Join%20the%20community-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-energy-donut/discussions)
 ![GitHub Discussions](https://img.shields.io/github/discussions/Piotras1/piotras-energy-donut?style=flat-square&logo=github&label=discussions&color=blueviolet)
