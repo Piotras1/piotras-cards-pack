@@ -4,10 +4,10 @@
 ![Piotras Smart Button](https://github.com/user-attachments/assets/4e2c5722-03b1-4c0c-b7af-64c75d48812b)
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
-![GitHub Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-smart-button/total?style=flat-square&logo=github)
+[![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-smart-button/piotras-smart-button-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)](https://github.com/Piotras1/piotras-smart-button/releases)
 ![GitHub Stars](https://img.shields.io/github/stars/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=stars&color=brightgreen)
 ![GitHub Issues](https://img.shields.io/github/issues/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=issues)
-![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-smart-button?style=flat-square)
+![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=released)
 ![GitHub Release Date](https://img.shields.io/github/release-date/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=released)
 
 [![Guides](https://img.shields.io/badge/Guides-Show%20%26%20Tell-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions/categories/show-and-tell)
@@ -34,10 +34,10 @@
 ![Piotras Climate Info](https://github.com/user-attachments/assets/8bf7e22d-91da-41ba-a62e-cec7dbdc8ba9)
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
-![GitHub Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-climate-info/total?style=flat-square&logo=github)
+[![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-climate-info/piotras-climate-info-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)](https://github.com/Piotras1/piotras-climate-info/releases)
 ![GitHub Stars](https://img.shields.io/github/stars/Piotras1/piotras-climate-info?style=flat-square&logo=github&label=stars&color=brightgreen)
 ![GitHub Issues](https://img.shields.io/github/issues/Piotras1/piotras-climate-info?style=flat-square&logo=github&label=issues)
-![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-climate-info?style=flat-square)
+![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-climate-info?style=flat-square&logo=github&label=released)
 ![GitHub Release Date](https://img.shields.io/github/release-date/Piotras1/piotras-climate-info?style=flat-square&logo=github&label=released)
 
 [![GitHub Discussions](https://img.shields.io/badge/Discussions-Join%20the%20community-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-climate-info/discussions)
@@ -88,10 +88,10 @@
 ![Karta Piotras Value Bar](https://github.com/user-attachments/assets/c29e9f24-ec35-4e2b-85fb-37f22a48e81a)
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
-![GitHub Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-value-bar/total?style=flat-square&logo=github)
+[![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-value-bar/piotras-value-bar-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)](https://github.com/Piotras1/piotras-value-bar/releases)
 ![GitHub Stars](https://img.shields.io/github/stars/Piotras1/piotras-value-bar?style=flat-square&logo=github&label=stars&color=brightgreen)
 ![GitHub Issues](https://img.shields.io/github/issues/Piotras1/piotras-value-bar?style=flat-square&logo=github&label=issues)
-![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-value-bar?style=flat-square)
+![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-value-bar?style=flat-square&logo=github&label=released)
 ![GitHub Release Date](https://img.shields.io/github/release-date/Piotras1/piotras-value-bar?style=flat-square&logo=github&label=released)
 
 [![GitHub Discussions](https://img.shields.io/badge/Discussions-Join%20the%20community-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-value-bar/discussions)
