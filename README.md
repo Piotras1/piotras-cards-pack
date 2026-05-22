@@ -1,7 +1,8 @@
 ## All available Piotras cards
 
 # 🔘 Piotras Smart Button 
-![Piotras Smart Button](https://github.com/user-attachments/assets/4e2c5722-03b1-4c0c-b7af-64c75d48812b)
+<img width="900" height="600" alt="Piotras-smart-button" src="https://github.com/user-attachments/assets/0d24b304-e1f2-49be-b8e1-f2803d856b4f" />
+<br><br>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
 ![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-smart-button/piotras-smart-button-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)
@@ -31,7 +32,8 @@
 ---
 
 # 🌡️ Piotras Climate Info
-![Piotras Climate Info](https://github.com/user-attachments/assets/8bf7e22d-91da-41ba-a62e-cec7dbdc8ba9)
+<img width="900" height="600" alt="Piotras-climate-info" src="https://github.com/user-attachments/assets/d8af8797-058b-4f8a-bb77-1c7e8dab5dfb" />
+<br><br>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
 ![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-climate-info/piotras-climate-info-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)
