@@ -88,7 +88,8 @@
 ---
 
 # 📊 Piotras Value Bar
-![Karta Piotras Value Bar](https://github.com/user-attachments/assets/c29e9f24-ec35-4e2b-85fb-37f22a48e81a)
+<img width="900" height="600" alt="piotras-value-bar" src="https://github.com/user-attachments/assets/c603967a-2681-40ca-b970-d4b3e8a2fd78" />
+<br><br>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
 ![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-value-bar/piotras-value-bar-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)
