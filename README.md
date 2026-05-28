@@ -1,7 +1,7 @@
 ## All available Piotras cards
 
 # 🔘 Piotras Smart Button 
-<img width="900" height="600" alt="piotras-smart-button" src="https://github.com/user-attachments/assets/4bb1242c-9b1d-4ba9-9638-9c3f0c3957c5" />
+<img width="900" height="600" alt="piotras-smart-button" src="https://github.com/user-attachments/assets/29c119fc-d935-49b4-8729-a6c1dcbafa5e" />
 <br><br>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
