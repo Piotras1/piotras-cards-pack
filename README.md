@@ -40,11 +40,6 @@ Adjust layout, size, icon, text, background, sliders, actions and services witho
 > [!TIP]
 > **Manual Installation:** Full step-by-step instructions are available in the **Documentation** link above.
 
-### Description
-- **A highly advanced Home Assistant button card designed with a unique feedback system that visually confirms every service call with an animated countdown.** 
-- **It features an innovative 9-Grid layout for flexible icon and label positioning, alongside smart sliders that automatically detect brightness, color temperature, or volume levels.**  
-- **Everything is easily managed through a built-in visual editor, removing the need for any manual YAML configuration**
-
 ---
 
 # 🌡️ Piotras Climate Info
