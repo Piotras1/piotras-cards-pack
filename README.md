@@ -1,7 +1,7 @@
 ## All available Piotras cards
 
 # 🔘 Piotras Smart Button 
-<img width="1774" height="887" alt="piotras-smart-button" src="https://github.com/user-attachments/assets/6ae75263-b16b-4018-a320-43a6ab84c7c6" />
+<img width="1200" height="600" alt="piotras-smart-button" src="https://github.com/user-attachments/assets/2ab8c597-a745-46d2-95a5-adb5e8f74e01" />
 <br><br>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
@@ -33,7 +33,7 @@
 ---
 
 # 🌡️ Piotras Climate Info
-<img width="900" height="600" alt="piotras-climate-info" src="https://github.com/user-attachments/assets/cc525533-a83b-444c-bb6f-c71a0ba54817" />
+<img width="1200" height="799" alt="piotras-climate-info" src="https://github.com/user-attachments/assets/854fd68b-4f35-42d1-9efe-69e8e36d2afa" />
 <br><br>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
@@ -64,6 +64,10 @@
 
 # 🍩 Piotras Energy Donut
 <img width="900" height="600" alt="piotras-energy-donut" src="https://github.com/user-attachments/assets/7ea8847c-4e3e-4552-95f1-6328ff7604d2" />
+
+[Uploading piotras-smart-button.js…]()
+
+
 <br><br>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
