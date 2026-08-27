@@ -63,11 +63,7 @@
 ---
 
 # 🍩 Piotras Energy Donut
-<img width="900" height="600" alt="piotras-energy-donut" src="https://github.com/user-attachments/assets/7ea8847c-4e3e-4552-95f1-6328ff7604d2" />
-
-[Uploading piotras-smart-button.js…]()
-
-
+<img width="1200" height="799" alt="piotras-energy-donut" src="https://github.com/user-attachments/assets/474b4e49-a916-4ee2-9f7a-b7d75d660d5d" />
 <br><br>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
