@@ -2,7 +2,13 @@
 
 # 🔘 Piotras Smart Button 
 <img width="1200" height="600" alt="piotras-smart-button" src="https://github.com/user-attachments/assets/2ab8c597-a745-46d2-95a5-adb5e8f74e01" />
-<br><br>
+<br>
+
+### Why another button card?
+
+**Piotras Smart Button is not designed for just one type of entity.
+It combines controls, status displays, visualizations and custom logic into a single highly configurable Lovelace card.
+Use it as a light controller, thermostat, media controller, weather display, clock, power monitor, gate controller, alarm indicator — or build your own use case with Custom Data.**
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
 ![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-smart-button/piotras-smart-button-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)
