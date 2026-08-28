@@ -100,7 +100,8 @@ Adjust layout, size, icon, text, background, sliders, actions and services witho
 ---
 
 # 📊 Piotras Value Bar
-<img width="900" height="600" alt="piotras-value-bar" src="https://github.com/user-attachments/assets/c603967a-2681-40ca-b970-d4b3e8a2fd78" />
+
+<img width="1200" height="799" alt="piotras-value-bar" src="https://github.com/user-attachments/assets/c0e1a01e-f21c-4015-9e94-b2cd24e17ab6" />
 <br><br>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
