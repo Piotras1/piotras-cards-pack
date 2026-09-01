@@ -27,7 +27,8 @@ Adjust layout, size, icon, text, background, sliders, actions and services witho
 ![GitHub Release Date](https://img.shields.io/github/release-date/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=released)
 ![GitHub Forks](https://img.shields.io/github/forks/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=forks&color=blue)
 
-[![Guides](https://img.shields.io/badge/Guides-Show%20%26%20Tell-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions/categories/show-and-tell)
+[![Guides](https://img.shields.io/badge/Guides-Show%20%26%20Tell-olive?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions/categories/show-and-tell)
+[![Guides](https://img.shields.io/badge/Guides-Custom%20Data%20Modules-teal?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions/categories/custom-data-modules)
 [![GitHub Discussions](https://img.shields.io/badge/Discussions-Join%20the%20community-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions)
 ![GitHub Discussions](https://img.shields.io/github/discussions/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=discussions&color=blueviolet)
 
