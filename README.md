@@ -7,27 +7,45 @@
 - **One all-in-one Lovelace card for Home Assistant — lights, media players, climate, covers, vacuums, alarms, weather, clock, calendar and more. Set it up in the visual editor, no YAML needed.**
 - **Sliders, icons and colors adapt to the entity automatically. Add custom state labels, conditions and blockades with a few lines of YAML.**
 - **For power users: `custom_data` (your own JavaScript) and `custom_tap` (clickable elements with their own actions) — keypads, charts and control panels in a single card, no main entity needed.**
-
+---
 <details>
 <summary><b>🧩 custom_data and custom_tap syntax</b></summary>
 
+### Custom Data syntax
 ```yaml
+type: custom:piotras-smart-button
 custom_data:
-  temp: |-
+  temperature: |-
     p{{{
-      return states['sensor.living_room_temperature']?.state ?? '—';
+      const t = states['sensor.living_room_temperature']?.state;
+      return t !== undefined ? `${t} °C` : '—';
     }}}q
-  btn: |-
-    p{{{
-      const t = customTap.id({ action: 'toggle', entity: 'light.living_room' });
-      return `<div ${t}>Toggle</div>`;
-    }}}q
-name: customData.temp
+name: customData.temperature
 ```
+The `p{{{ … }}}q` block must be the whole value of the key and must contain a `return`. Use the result in any field as `customData.<key>`.
 
-The `p{{{ … }}}q` block is the whole value of a key and must contain a `return`. Use the result in a field as `customData.<key>`. Guides: [Custom Data](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_data_guide_3.md) · [Custom Tap](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_tap_3.md)
+### Custom Tap syntax
+```yaml
+type: custom:piotras-smart-button
+custom_data:
+  panel: |-
+    p{{{
+      const tap = customTap.id({
+        action: 'call-service',
+        service: 'light.toggle',
+        service_data: { entity_id: 'light.living_room' }
+      });
+      return `<div ${tap} style="cursor: pointer;">Toggle light</div>`;
+    }}}q
+name: customData.panel
+```
+`customTap.id({...})` gives one generated element its own action. For your own JavaScript use `customTap.id_js({ action: () => { ... card._updateState(); } })`.
+
+Full guides: [Custom Data & Templates](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_data_guide_3.md) · [Custom Tap](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_tap_3.md)
 
 </details>
+
+---
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
 [![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-smart-button/piotras-smart-button-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)](https://github.com/Piotras1/piotras-smart-button)
