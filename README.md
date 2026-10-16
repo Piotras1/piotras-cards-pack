@@ -1,36 +1,45 @@
 ## All available Piotras cards
 
-# 🔘 Piotras Smart Button 
-<img width="1200" height="600" alt="piotras-smart-button" src="https://github.com/user-attachments/assets/2ab8c597-a745-46d2-95a5-adb5e8f74e01" />
-<br>
+# 🔘 Piotras Smart Button
+<img src="https://raw.githubusercontent.com/Piotras1/piotras-smart-button/refs/heads/main/img/Neonowy%20baner%20Piotras%20Smart%20Button.jpg" alt="Piotras Smart Button">
 
-### 📚 Why another button card?
+### Description
+- **One all-in-one Lovelace card for Home Assistant — lights, media players, climate, covers, vacuums, alarms, weather, clock, calendar and more. Set it up in the visual editor, no YAML needed.**
+- **Sliders, icons and colors adapt to the entity automatically. Add custom state labels, conditions and blockades with a few lines of YAML.**
+- **For power users: `custom_data` (your own JavaScript) and `custom_tap` (clickable elements with their own actions) — keypads, charts and control panels in a single card, no main entity needed.**
 
-**Piotras Smart Button is not designed for just one type of entity.
-It combines controls, status displays, visualizations and custom logic into a single highly configurable Lovelace card.
-Use it as a light controller, thermostat, media controller, weather display, clock, power monitor, gate controller, alarm indicator — or build your own use case with Custom Data.**
+<details>
+<summary><b>🧩 custom_data and custom_tap syntax</b></summary>
 
-### 🖥 Visual Editor
+```yaml
+custom_data:
+  temp: |-
+    p{{{
+      return states['sensor.living_room_temperature']?.state ?? '—';
+    }}}q
+  btn: |-
+    p{{{
+      const t = customTap.id({ action: 'toggle', entity: 'light.living_room' });
+      return `<div ${t}>Toggle</div>`;
+    }}}q
+name: customData.temp
+```
 
-**Configure the card directly from the Home Assistant UI.
-Adjust layout, size, icon, text, background, sliders, actions and services without manually editing YAML.**
+The `p{{{ … }}}q` block is the whole value of a key and must contain a `return`. Use the result in a field as `customData.<key>`. Guides: [Custom Data](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_data_guide_3.md) · [Custom Tap](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_tap_3.md)
 
-### 🧩 Build Your Own Card Logic
-**Add your own JavaScript logic to read Home Assistant states, calculate values, create conditions, generate text and colors, and reuse the results throughout the card.**
-
+</details>
 
 ![HACS](https://img.shields.io/badge/HACS-Default-orange?style=flat-square)
-![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-smart-button/piotras-smart-button-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)
-![GitHub Stars](https://img.shields.io/github/stars/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=stars&color=brightgreen)
-![GitHub Issues](https://img.shields.io/github/issues/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=issues)
+[![HACS Downloads](https://img.shields.io/github/downloads/Piotras1/piotras-smart-button/piotras-smart-button-loader.js?logo=homeassistant&color=41BDF5&displayAssetName=false)](https://github.com/Piotras1/piotras-smart-button)
+[![GitHub Stars](https://img.shields.io/github/stars/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=stars&color=brightgreen)](https://github.com/Piotras1/piotras-smart-button/stargazers)
+[![GitHub Issues](https://img.shields.io/github/issues/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=issues)](https://github.com/Piotras1/piotras-smart-button/issues)
 [![GitHub Release](https://img.shields.io/github/v/release/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=released)](https://github.com/Piotras1/piotras-smart-button/releases)
-![GitHub Release Date](https://img.shields.io/github/release-date/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=released)
 ![GitHub Forks](https://img.shields.io/github/forks/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=forks&color=blue)
 
 [![Guides](https://img.shields.io/badge/Guides-Show%20%26%20Tell-olive?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions/categories/show-and-tell)
 [![Guides](https://img.shields.io/badge/Guides-Custom%20Data%20Modules-teal?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions/categories/custom-data-modules)
 [![GitHub Discussions](https://img.shields.io/badge/Discussions-Join%20the%20community-blueviolet?style=flat-square&logo=github)](https://github.com/Piotras1/piotras-smart-button/discussions)
-![GitHub Discussions](https://img.shields.io/github/discussions/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=discussions&color=blueviolet)
+[![GitHub Discussions](https://img.shields.io/github/discussions/Piotras1/piotras-smart-button?style=flat-square&logo=github&label=discussions&color=blueviolet)](https://github.com/Piotras1/piotras-smart-button/discussions)
 
 [![Assets Gallery](https://img.shields.io/badge/Assets%20Gallery-Smart%20Button-00b4d8?style=flat-square&logo=materialdesign)](https://piotras1.github.io/piotras-cards-pack/smart-button-assets.html)
 [![MDI Icons](https://img.shields.io/badge/HA%20Icons-Search%20Gallery-00b4d8?style=flat-square&logo=materialdesign)](https://piotras1.github.io/piotras-cards-pack/mdi-icon-browser.html)
