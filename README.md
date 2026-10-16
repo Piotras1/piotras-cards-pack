@@ -22,7 +22,7 @@ custom_data:
     }}}q
 name: customData.temperature
 ```
-The `p{{{ … }}}q` block must be the whole value of the key and must contain a `return`. Use the result in any field as `customData.<key>`.
+The `p{{{ … }}}q` block must be the whole value of the key and must contain a `return`. Use the result in most fields as `customData.<key>`.
 
 ### Custom Tap syntax
 ```yaml
@@ -41,7 +41,7 @@ name: customData.panel
 ```
 `customTap.id({...})` gives one generated element its own action. For your own JavaScript use `customTap.id_js({ action: () => { ... card._updateState(); } })`.
 
-Full guides: [Custom Data & Templates](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_data_guide_3.md) · [Custom Tap](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_tap_3.md)
+Full guides: [Custom Data & Templates](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_data_guide_3.md) · [Custom Tap](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_tap_3.md) · [Writing code with AI](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/ai_helper_3.md)
 
 </details>
 
