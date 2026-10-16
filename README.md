@@ -10,7 +10,8 @@
 ---
 <details>
 <summary><b>🧩 custom_data and custom_tap syntax</b></summary>
-
+  
+<!-- {% raw %} -->
 ### Custom Data syntax
 ```yaml
 type: custom:piotras-smart-button
@@ -40,6 +41,7 @@ custom_data:
 name: customData.panel
 ```
 `customTap.id({...})` gives one generated element its own action. For your own JavaScript use `customTap.id_js({ action: () => { ... card._updateState(); } })`.
+<!-- {% endraw %} -->
 
 Full guides: [Custom Data & Templates](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_data_guide_3.md) · [Custom Tap](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/custom_tap_3.md) · [Writing code with AI](https://github.com/Piotras1/piotras-smart-button/blob/main/docs/ai_helper_3.md)
 
